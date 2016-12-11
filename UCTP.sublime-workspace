@@ -1,0 +1,955 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"size",
+				"sizeViolations"
+			],
+			[
+				"from",
+				"fromOld"
+			],
+			[
+				"period",
+				"periods_per_day"
+			],
+			[
+				"best",
+				"bestSCV"
+			],
+			[
+				"temp",
+				"tempSchedule"
+			],
+			[
+				"N",
+				"NumberSCV"
+			],
+			[
+				"nu",
+				"NumberSCV"
+			],
+			[
+				"swap",
+				"swapRoom"
+			],
+			[
+				"new",
+				"newFRT"
+			],
+			[
+				"set",
+				"setVenueTime"
+			],
+			[
+				"second",
+				"secondRoom"
+			],
+			[
+				"fi",
+				"firstCRT"
+			],
+			[
+				"get",
+				"getRoom"
+			],
+			[
+				"run",
+				"runEnhancement"
+			],
+			[
+				"mov",
+				"moveToBest"
+			],
+			[
+				"fin",
+				"filename"
+			],
+			[
+				"lE",
+				"lEvalOp"
+			],
+			[
+				"INT_",
+				"INT_MIN"
+			],
+			[
+				"gen",
+				"geneticSchedule"
+			],
+			[
+				"do",
+				"doubleLectures"
+			],
+			[
+				"m",
+				"minWorkingDays"
+			],
+			[
+				"max",
+				"maxStudentsPerLecturer"
+			],
+			[
+				"lec",
+				"lecturers"
+			],
+			[
+				"le",
+				"lecturerIndex"
+			],
+			[
+				"lecture",
+				"lecturerIndex"
+			],
+			[
+				"stu",
+				"studentIndex"
+			],
+			[
+				"lect",
+				"lectPenalty"
+			],
+			[
+				"studen",
+				"studentIndex"
+			],
+			[
+				"IS",
+				"iostream"
+			],
+			[
+				"hof",
+				"hofName"
+			],
+			[
+				"th",
+				"thisHall"
+			],
+			[
+				"l",
+				"lVivarium"
+			],
+			[
+				"g",
+				"genetic"
+			],
+			[
+				"ge",
+				"genetic"
+			],
+			[
+				"O",
+				"OneMaxEvalOP"
+			],
+			[
+				"stut",
+				"Student"
+			],
+			[
+				"s",
+				"studentLecturerList"
+			],
+			[
+				"number",
+				"numberOverAssingment"
+			],
+			[
+				"n",
+				"numberOverAssingment"
+			],
+			[
+				"Gene",
+				"GeneticAlgorithm"
+			],
+			[
+				"ant",
+				"AntcolonyAssignment"
+			],
+			[
+				"Li",
+				"LIBS"
+			],
+			[
+				"Gen",
+				"GeneticAlgorithm"
+			],
+			[
+				"stude",
+				"studentLecturer"
+			],
+			[
+				"Genetic",
+				"GeneticAssignment"
+			],
+			[
+				"gene",
+				"geneticAssignment"
+			],
+			[
+				"ind",
+				"_ind"
+			],
+			[
+				"gl",
+				"globalLecturerList"
+			],
+			[
+				"glob",
+				"globalStudentList"
+			],
+			[
+				"v",
+				"vector"
+			],
+			[
+				"st",
+				"student"
+			],
+			[
+				"random",
+				"randomAssignment"
+			],
+			[
+				"he",
+				"heuristicFactor"
+			],
+			[
+				"tra",
+				"trailFactor"
+			],
+			[
+				"time",
+				"timetable"
+			],
+			[
+				"sl",
+				"slResult"
+			],
+			[
+				"res",
+				"resetLecturerList"
+			],
+			[
+				"e",
+				"end"
+			],
+			[
+				"b",
+				"begin"
+			],
+			[
+				"c",
+				"copySL"
+			],
+			[
+				"rand",
+				"random_shuffle"
+			],
+			[
+				"a",
+				"availableLecturers"
+			],
+			[
+				"in",
+				"include"
+			],
+			[
+				"ad",
+				"adjacentMatrix"
+			],
+			[
+				"stud",
+				"studIter"
+			],
+			[
+				"for",
+				"forv\tVector For Loop"
+			],
+			[
+				"C",
+				"CXXFLAGS"
+			],
+			[
+				"S",
+				"Student"
+			],
+			[
+				"pr",
+				"previous"
+			],
+			[
+				"p",
+				"previous"
+			],
+			[
+				"F",
+				"front"
+			],
+			[
+				"Node",
+				"NODE"
+			],
+			[
+				"student",
+				"students"
+			],
+			[
+				"te",
+				"tempStudents"
+			],
+			[
+				"pu",
+				"push_back"
+			],
+			[
+				"en",
+				"endl"
+			],
+			[
+				"fo",
+				"forv\tVector For Loop"
+			],
+			[
+				"array",
+				"arrayTokens"
+			],
+			[
+				"arr",
+				"arrayTokens"
+			],
+			[
+				"fil",
+				"filename"
+			],
+			[
+				"read",
+				"readInput"
+			],
+			[
+				"as",
+				"Assignment"
+			],
+			[
+				"i",
+				"inc\t#include \"…\""
+			],
+			[
+				"Lec",
+				"lecturePref"
+			],
+			[
+				"num",
+				"numStudents"
+			],
+			[
+				"L",
+				"Lecturer"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"str",
+				"string"
+			],
+			[
+				"Le",
+				"Lecturer"
+			],
+			[
+				"h",
+				"h"
+			],
+			[
+				"ap",
+				"appendNode"
+			],
+			[
+				"Linke",
+				"LinkedListDemo"
+			],
+			[
+				"Lin",
+				"LinkedListDemo"
+			],
+			[
+				"Link",
+				"LinkedListDemo"
+			],
+			[
+				"co",
+				"cout"
+			],
+			[
+				"sq",
+				"sqr"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+					""
+				],
+				[
+					"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+					""
+				],
+				[
+					"Packages/C++ Starting Kit/C++ - Starting Kit.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 357.0,
+		"last_filter": "make",
+		"selected_items":
+		[
+			[
+				"make",
+				"Build With: Make - Clean"
+			],
+			[
+				"box",
+				"Boxy Theme: Activation"
+			],
+			[
+				"b",
+				"Boxy Theme: Activation"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"f",
+				"File Icons: Settings"
+			],
+			[
+				"mat",
+				"Material Theme: Activate theme"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"mak",
+				"Build With: Make"
+			],
+			[
+				"clan",
+				"Clang Format: Format Selection"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: r",
+				"Package Control: Remove Package"
+			],
+			[
+				"in",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"set syntax: c",
+				"Set Syntax: C++"
+			],
+			[
+				"ter",
+				"Terminal: Open in project folder"
+			],
+			[
+				"",
+				"Build With: C++ Single File - Run"
+			],
+			[
+				"bui",
+				"Build With: Make - Clean"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"li",
+				"Package Control: List Packages"
+			],
+			[
+				"enabl",
+				"Package Control: Enable Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: li",
+				"Package Control: List Packages"
+			],
+			[
+				"Packa",
+				"Package Control: Enable Package"
+			],
+			[
+				"c",
+				"Set Syntax: C++"
+			],
+			[
+				"Snippet: ",
+				"Snippet: #!/usr/bin/env"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 202.0,
+		"history":
+		[
+			"cmd /home/patrick/vboxdocs/Data Structures/Files/LinkedListDemo",
+			"/home/patrick/vboxdocs/Data Structures/Files/LinkedListDemo",
+			"/home/patrick/vboxdocs/Data Structures/Files/LinkedListDemo\"",
+			"cmd ./LinkedListDemo",
+			"cmd LinkedListDemo",
+			"ls",
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"ls"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/patrick/work/UCTP-CPP"
+	],
+	"file_history":
+	[
+		"/home/patrick/work/UCTP-CPP/Timetable.cpp",
+		"/home/patrick/work/UCTP-CPP/ReadCRT.h",
+		"/home/patrick/work/UCTP-CPP/tempResult.sol",
+		"/home/patrick/work/UCTP-CPP/Schedule/feasibletable.h",
+		"/home/patrick/work/UCTP-CPP/Data.cpp",
+		"/home/patrick/work/hello_world_project/helloworld.cpp",
+		"/home/patrick/work/hello_world_project/makefile",
+		"/home/patrick/work/hello_world_project/untitled.php",
+		"/home/patrick/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
+		"/home/patrick/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/patrick/aptik_backup/crontab/root",
+		"/home/patrick/Desktop/custom_textview.xml",
+		"/home/patrick/Android/Sdk/platform-tools/hosts",
+		"/home/patrick/AndroidStudioProjects/google-services/android/signin/app-legacy/src/main/java/com/google/samples/quickstart/signin/legacy/MainActivity.java",
+		"/home/patrick/AndroidStudioProjects/AndroidGooglePlusLoginExample/app/src/main/AndroidManifest.xml",
+		"/home/patrick/AndroidStudioProjects/google-services/android/signin/app/src/main/AndroidManifest.xml",
+		"/home/patrick/Downloads/google-services.json",
+		"/home/patrick/AndroidStudioProjects/AndroidGooglePlusLoginExample/app/google-services.json",
+		"/home/patrick/Downloads/guard/finish/composer.json",
+		"/home/patrick/Downloads/guard/finish/app/config/security.yml",
+		"/home/patrick/Downloads/guard/finish/app/config/config.yml",
+		"/home/patrick/Downloads/guard/finish/app/Resources/views/security/login.html.twig",
+		"/home/patrick/Downloads/guard/finish/app/config/services.yml",
+		"/home/patrick/Downloads/guard/finish/app/Resources/views/facebook/registration.html.twig",
+		"/home/patrick/Downloads/guard/finish/app/config/routing.yml",
+		"/home/patrick/Downloads/guard/finish/src/AppBundle/Controller/FacebookConnectController.php",
+		"/home/patrick/Desktop/Test/5829333/CircleTransform.java",
+		"/home/patrick/Downloads/client_secret_1072361432328-ac9rkrburta3agbn4207gpbjrefnh377.apps.googleusercontent.com.json",
+		"/home/patrick/Downloads/guard/finish/src/AppBundle/Controller/SecurityController.php",
+		"/home/patrick/Downloads/guard/finish/src/AppBundle/Security/FacebookAuthenticator.php",
+		"/home/patrick/Downloads/guard/finish/src/AppBundle/Security/FormLoginAuthenticator.php",
+		"/home/patrick/Downloads/guard/finish/src/AppBundle/Security/ApiTokenAuthenticator.php",
+		"/home/patrick/Downloads/guard/finish/app/AppKernel.php",
+		"/home/patrick/Downloads/facebook_box.xml",
+		"/home/patrick/Downloads/3513e42839ae4309d2b5-7c4fa3da4e3912ad07c6a06af4206c4899b95d77/res_color_btn_flat_selector.xml",
+		"/home/patrick/AndroidStudioProjects/Retrofit.OAuth-2/app/src/main/java/oauth2/client/RequestInterceptorService.java",
+		"/home/patrick/AndroidStudioProjects/android-oauth2-client/src/org/sdf/danielsz/Token.java",
+		"/home/patrick/Desktop/Test/Country drop down/city_state.js",
+		"/home/patrick/AndroidStudioProjects/Retrofit.OAuth-2/README.md",
+		"/home/patrick/AndroidStudioProjects/Retrofit.OAuth-2/LICENSE",
+		"/home/patrick/AndroidStudioProjects/android-oauth2-client/src/org/sdf/danielsz/OAuth2Client.java",
+		"/home/patrick/AndroidStudioProjects/android-oauth2-client/src/org/sdf/danielsz/OAuth2Config.java",
+		"/home/patrick/AndroidStudioProjects/android-oauth2-client/src/org/sdf/danielsz/OAuthConstants.java",
+		"/home/patrick/AndroidStudioProjects/android-oauth2-client/src/org/sdf/danielsz/OAuthUtils.java",
+		"/home/patrick/Desktop/Test/Country drop down/Country-dropdown.html",
+		"/home/patrick/Downloads/bootstrap-login-forms/form-1/index.html",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/AndroidManifest.xml",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/MainActivity.java",
+		"/home/patrick/Downloads/Oauth for android/Signin Template for Bootstrap.html",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/DemoResult.java",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/DemoDataSource.java",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/PostRequest.java",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/PutRequest.java",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/DeleteRequest.java",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/ErrorRequest.java",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/GsonRequest.java",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/symfonyAndroidOauthdemo/android/src/main/java/sohier/me/saiod/android/AbstractRequest.java",
+		"/home/patrick/Downloads/485X2ZLQBK.txt",
+		"/home/patrick/Desktop/Test/AndroidOauthDemo-master/README.md",
+		"/home/patrick/work/laundryman_service/testing.php",
+		"/home/patrick/Downloads/guard/finish/testAuth.php",
+		"/home/patrick/Downloads/laundryman_service_website-master-38a1b04a404eb80c17037c9967f065a33cf79bbd/src/AppBundle/Controller/DemoController.php",
+		"/home/patrick/Desktop/Test/laundryman_service/src/AppBundle/Controller/DemoController.php",
+		"/home/patrick/Desktop/Test/laundryman_service/app/config/config.yml",
+		"/home/patrick/Desktop/Test/SymfonyOauthDemo-master/composer.json",
+		"/home/patrick/work/ls/laundryman_service_old/src/AppBundle/Security/FormLoginAuthenticator.php",
+		"/home/patrick/work/UCTP-CPP/Schedule/feasibletable.cpp",
+		"/home/patrick/work/UCTP-CPP/genAssignment.cpp",
+		"/home/patrick/Downloads/laundryman_service_web-master-377504e69a5228b9c1dab53dd3457a360e9be82c/composer.json",
+		"/home/patrick/Downloads/guard/finish/src/AppBundle/Repository/UserRepository.php",
+		"/home/patrick/work/ls/laundryman_service_old/app/config/config.yml",
+		"/home/patrick/work/ls/laundryman_service_old/app/config/security.yml",
+		"/home/patrick/work/UCTP-CPP/Schedule/improvetable.cpp",
+		"/home/patrick/work/UCTP-CPP/Schedule/enhancement.cpp",
+		"/home/patrick/work/UCTP-CPP/Schedule/enhancement.h",
+		"/home/patrick/work/UCTP-CPP/geneticSchedule.conf",
+		"/home/patrick/Downloads/guard/start/app/check.php",
+		"/home/patrick/Desktop/Genetic Run/UCTP-CPP/genAssignment.cpp",
+		"/home/patrick/Documents/Heuristics/UCTP Datasets/ITC-2007_ectt/comp11.ectt",
+		"/home/patrick/Documents/Heuristics/UCTP Datasets/ITC-2007_ectt/comp01.ectt",
+		"/home/patrick/work/UCTP-CPP/Solutions/gen-Fis0506-1",
+		"/home/patrick/Documents/Heuristics/UCTP Datasets/ITC-2007_ectt/comp02.ectt",
+		"/home/patrick/Documents/Heuristics/UCTP Datasets/ITC-2007_ectt/comp12.ectt",
+		"/home/patrick/work/UCTP-CPP/geneticSchedule",
+		"/home/patrick/work/UCTP-CPP/Solutions/gen-Fis0506-2",
+		"/home/patrick/work/UCTP-CPP/Solutions/gen-Let0506-2",
+		"/home/patrick/work/UCTP-CPP/geneticSchedule89.conf",
+		"/home/patrick/work/UCTP-CPP/Schedule/smethods.h",
+		"/home/patrick/work/UCTP-CPP/makefile",
+		"/home/patrick/work/UCTP-CPP/data.h",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp11.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp21.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp20.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp19.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp18.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp17.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp16.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp15.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp14.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp13.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp12.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp10.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp09.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp08.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp07.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp06.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp05.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp04.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp03.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp02.ectt",
+		"/home/patrick/work/UCTP-CPP/InputData/ITC-2007_ectt/comp01.ectt",
+		"/home/patrick/work/UCTP-CPP/Schedule/UCTPEvalOp.cpp",
+		"/home/patrick/work/UCTP-CPP/Schedule/improvetable.h",
+		"/home/patrick/work/UCTP-CPP/antSchedule",
+		"/home/patrick/work/UCTP-CPP/Schedule/smethods.cpp",
+		"/home/patrick/work/UCTP-CPP/Schedule/courseroomtime.cpp",
+		"/home/patrick/Documents/carter/testprob/readme.txt",
+		"/home/patrick/work/UCTP-CPP (copy)/makefile",
+		"/home/patrick/work/UCTP-CPP/Schedule/UCTPEvalOp.hpp",
+		"/home/patrick/work/UCTP-CPP/Schedule/courseroomtime.h",
+		"/home/patrick/Downloads/Sublime Text 3 Serial Key Only/Serial/Serial.txt",
+		"/home/patrick/Downloads/Sublime Text 3 Serial Key Only/Instructions.txt",
+		"/home/patrick/Downloads/Open_beagle/beagle-3.0.3/PACC/Util/Randomizer.hpp",
+		"/home/patrick/Downloads/Open_beagle/beagle-3.0.3/beagle/GA/include/beagle/GA/InitIntVecOp.hpp",
+		"/home/patrick/Downloads/Open_beagle/beagle-3.0.3/beagle/GA/src/InitIntVecOp.cpp",
+		"/home/patrick/work/UCTP-CPP/Courses/course.h",
+		"/home/patrick/work/UCTP-CPP/Schedule/venueTime.cpp",
+		"/home/patrick/work/UCTP-CPP/Courses/course.cpp"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 120.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\\\\",
+			"4 8",
+			"  \n",
+			"maximumPeriod",
+			"this->maxPeriod",
+			"apply",
+			"apple",
+			"appleC",
+			"this",
+			"c =",
+			"c=",
+			"moveToBest",
+			"SM::iiT.maxPeriod",
+			"SM::numPeriods",
+			"MaxFctFloat",
+			"UTCP",
+			"UCTPEvalOP",
+			"MaxFctFloat",
+			"genetic",
+			"2372",
+			"int",
+			"maxgen",
+			"serial",
+			"OneMaxEvalOp",
+			"libs",
+			"config",
+			"Open beagle/",
+			"beagle/beagle-3.0.3/",
+			"include",
+			"distance",
+			"();\n",
+			"c2",
+			"c1",
+			"Course",
+			"c1",
+			"c2",
+			"c1",
+			"Course",
+			"gedit",
+			"desktop",
+			"["
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\\",
+			"SM::iiT.getMaxPeriod()",
+			"SM::iiT.maxPeriod",
+			"UCTP",
+			"UTCP",
+			"UTCPEvalOp",
+			"MaxFctFloatEvalOp",
+			"l2",
+			"l1",
+			"Lecturer",
+			"l1",
+			"l2",
+			"Lecturer",
+			"sublime-text"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 245.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Makefile/Make.sublime-build",
+	"project": "UCTP.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"makefile"
+			],
+			[
+				"make",
+				"makefile"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 253.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
