@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"inc",
+				"include"
+			],
+			[
+				"get",
+				"getFeasibleTable"
+			],
+			[
 				"size",
 				"sizeViolations"
 			],
@@ -50,10 +58,6 @@
 			[
 				"fi",
 				"firstCRT"
-			],
-			[
-				"get",
-				"getRoom"
 			],
 			[
 				"run",
@@ -391,8 +395,35 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "Timetable.cpp",
+			"settings":
+			{
+				"buffer_size": 6612,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ReadCRT.h",
+			"settings":
+			{
+				"buffer_size": 1925,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Schedule/feasibletable.cpp",
+			"settings":
+			{
+				"buffer_size": 33335,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Makefile/Make.sublime-build",
 	"build_system_choices":
 	[
 		[
@@ -509,7 +540,19 @@
 		[
 			[
 				"make",
-				"Build With: Make - Clean"
+				"Build With: Make"
+			],
+			[
+				"ma",
+				"Build With: Make"
+			],
+			[
+				"cla",
+				"Clang Format: Format Selection"
+			],
+			[
+				"cl",
+				"Clang Format: Select Style"
 			],
 			[
 				"box",
@@ -632,10 +675,13 @@
 	},
 	"expanded_folders":
 	[
-		"/home/patrick/work/UCTP-CPP"
+		"/home/patrick/work/UCTP-CPP",
+		"/home/patrick/work/UCTP-CPP/InputData/DDS-2008_ectt"
 	],
 	"file_history":
 	[
+		"/home/patrick/work/UCTP-CPP/.gitignore",
+		"/home/patrick/work/UCTP-CPP/UCTP",
 		"/home/patrick/work/UCTP-CPP/Timetable.cpp",
 		"/home/patrick/work/UCTP-CPP/ReadCRT.h",
 		"/home/patrick/work/UCTP-CPP/tempResult.sol",
@@ -761,9 +807,7 @@
 		"/home/patrick/Downloads/Open_beagle/beagle-3.0.3/PACC/Util/Randomizer.hpp",
 		"/home/patrick/Downloads/Open_beagle/beagle-3.0.3/beagle/GA/include/beagle/GA/InitIntVecOp.hpp",
 		"/home/patrick/Downloads/Open_beagle/beagle-3.0.3/beagle/GA/src/InitIntVecOp.cpp",
-		"/home/patrick/work/UCTP-CPP/Courses/course.h",
-		"/home/patrick/work/UCTP-CPP/Schedule/venueTime.cpp",
-		"/home/patrick/work/UCTP-CPP/Courses/course.cpp"
+		"/home/patrick/work/UCTP-CPP/Courses/course.h"
 	],
 	"find":
 	{
@@ -853,8 +897,95 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "Timetable.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6612,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								419,
+								419
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "ReadCRT.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1925,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								526,
+								526
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 234.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Schedule/feasibletable.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 33335,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								838,
+								838
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3456.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

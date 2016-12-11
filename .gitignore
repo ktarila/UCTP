@@ -1,0 +1,4 @@
+# ignores all .txt recursive from the current folder
+**/*.o
+**.sol
+**.ectt
