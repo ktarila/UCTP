@@ -1,88 +1,88 @@
-AntCul	2	Period: 6  Name: rH Capacity: 170 Site: 0	Period: 7  Name: rH Capacity: 170 Site: 0	
-ArcClaCS	2	Period: 15  Name: rDTM Capacity: 60 Site: 2	Period: 21  Name: rDTM Capacity: 60 Site: 2	
-ArcCla1	3	Period: 19  Name: rDTM Capacity: 60 Site: 2	Period: 11  Name: rDTM Capacity: 60 Site: 2	Period: 1  Name: rDTM Capacity: 60 Site: 2	
-ArcCla2	2	Period: 14  Name: rDTM Capacity: 60 Site: 2	Period: 20  Name: rDTM Capacity: 60 Site: 2	
-ArcCriMed	2	Period: 5  Name: rDTM Capacity: 60 Site: 2	Period: 4  Name: rDTM Capacity: 60 Site: 2	
-ArcVicOriAnt	3	Period: 9  Name: r14 Capacity: 28 Site: 1	Period: 15  Name: r14 Capacity: 28 Site: 1	Period: 22  Name: r14 Capacity: 28 Site: 1	
-ArcStoArtMus	2	Period: 22  Name: rM Capacity: 60 Site: 1	Period: 23  Name: rM Capacity: 60 Site: 1	
-ArcMedCS	2	Period: 18  Name: rM Capacity: 60 Site: 1	Period: 6  Name: rM Capacity: 60 Site: 1	
-Archiv	3	Period: 18  Name: rL Capacity: 65 Site: 0	Period: 7  Name: rL Capacity: 65 Site: 0	Period: 6  Name: rL Capacity: 65 Site: 0	
-ArchivCS	3	Period: 28  Name: rO Capacity: 30 Site: 1	Period: 9  Name: rO Capacity: 30 Site: 1	Period: 29  Name: rO Capacity: 30 Site: 1	
-BioarcCS	2	Period: 12  Name: rH Capacity: 170 Site: 0	Period: 11  Name: rH Capacity: 170 Site: 0	
-Cartog	3	Period: 15  Name: rC1 Capacity: 28 Site: 0	Period: 2  Name: rC1 Capacity: 28 Site: 0	Period: 25  Name: rC1 Capacity: 28 Site: 0	
-ChiResCS	2	Period: 25  Name: r14 Capacity: 28 Site: 1	Period: 24  Name: r14 Capacity: 28 Site: 1	
-Codico	3	Period: 2  Name: rO Capacity: 30 Site: 1	Period: 11  Name: rO Capacity: 30 Site: 1	Period: 10  Name: rO Capacity: 30 Site: 1	
-CodicoCS	2	Period: 4  Name: r15 Capacity: 46 Site: 1	Period: 3  Name: r15 Capacity: 46 Site: 1	
-EcoAzi	3	Period: 2  Name: rH Capacity: 170 Site: 0	Period: 9  Name: rH Capacity: 170 Site: 0	Period: 14  Name: rH Capacity: 170 Site: 0	
-EleInfSciCatBenCulM2	2	Period: 27  Name: rVL Capacity: 40 Site: 0	Period: 29  Name: rVL Capacity: 40 Site: 0	
-EleInfSciCatBenCulM3	3	Period: 21  Name: rC1 Capacity: 28 Site: 0	Period: 4  Name: rC1 Capacity: 28 Site: 0	Period: 20  Name: rC1 Capacity: 28 Site: 0	
-EpiLat	3	Period: 20  Name: rL Capacity: 65 Site: 0	Period: 5  Name: rL Capacity: 65 Site: 0	Period: 4  Name: rL Capacity: 65 Site: 0	
-Esteti	3	Period: 19  Name: rH Capacity: 170 Site: 0	Period: 18  Name: rH Capacity: 170 Site: 0	Period: 24  Name: rH Capacity: 170 Site: 0	
-EtrAntIta	3	Period: 4  Name: rM Capacity: 60 Site: 1	Period: 27  Name: rM Capacity: 60 Site: 1	Period: 28  Name: rM Capacity: 60 Site: 1	
-FilCla2	3	Period: 3  Name: rO Capacity: 30 Site: 1	Period: 17  Name: rO Capacity: 30 Site: 1	Period: 16  Name: rO Capacity: 30 Site: 1	
-FilTeo	3	Period: 29  Name: r15 Capacity: 46 Site: 1	Period: 22  Name: r15 Capacity: 46 Site: 1	Period: 28  Name: r15 Capacity: 46 Site: 1	
-FonSoc	3	Period: 15  Name: rHTM Capacity: 60 Site: 2	Period: 0  Name: rHTM Capacity: 60 Site: 2	Period: 8  Name: rHTM Capacity: 60 Site: 2	
-GeoTur	3	Period: 1  Name: rH Capacity: 170 Site: 0	Period: 16  Name: rH Capacity: 170 Site: 0	Period: 23  Name: rH Capacity: 170 Site: 0	
-Geo1	3	Period: 20  Name: rH Capacity: 170 Site: 0	Period: 26  Name: rH Capacity: 170 Site: 0	Period: 28  Name: rH Capacity: 170 Site: 0	
-Glotto	3	Period: 24  Name: rVL Capacity: 40 Site: 0	Period: 3  Name: rVL Capacity: 40 Site: 0	Period: 25  Name: rVL Capacity: 40 Site: 0	
-InfDoc	3	Period: 3  Name: r10 Capacity: 130 Site: 1	Period: 9  Name: r10 Capacity: 130 Site: 1	Period: 29  Name: r10 Capacity: 130 Site: 1	
-ItaScr	2	Period: 17  Name: r10 Capacity: 130 Site: 1	Period: 16  Name: r10 Capacity: 130 Site: 1	
-LabScr	1	Period: 1  Name: rL Capacity: 65 Site: 0	
-LegBenCul2	2	Period: 10  Name: r10 Capacity: 130 Site: 1	Period: 21  Name: r10 Capacity: 130 Site: 1	
-LetCriAnt	3	Period: 14  Name: r10 Capacity: 130 Site: 1	Period: 2  Name: r10 Capacity: 130 Site: 1	Period: 1  Name: r10 Capacity: 130 Site: 1	
-LinLetGre1	3	Period: 26  Name: r15 Capacity: 46 Site: 1	Period: 27  Name: r15 Capacity: 46 Site: 1	Period: 20  Name: r15 Capacity: 46 Site: 1	
-LinLetLatCS	2	Period: 6  Name: rC1 Capacity: 28 Site: 0	Period: 7  Name: rC1 Capacity: 28 Site: 0	
-LinLetLat2	3	Period: 12  Name: rC1 Capacity: 28 Site: 0	Period: 13  Name: rC1 Capacity: 28 Site: 0	Period: 11  Name: rC1 Capacity: 28 Site: 0	
-LinGreA	2	Period: 18  Name: r14 Capacity: 28 Site: 1	Period: 11  Name: r14 Capacity: 28 Site: 1	
-LinLatA	2	Period: 16  Name: rL Capacity: 65 Site: 0	Period: 27  Name: rL Capacity: 65 Site: 0	
-LinLatB	3	Period: 8  Name: rH Capacity: 170 Site: 0	Period: 27  Name: rH Capacity: 170 Site: 0	Period: 13  Name: rH Capacity: 170 Site: 0	
-LinGen	3	Period: 17  Name: rL Capacity: 65 Site: 0	Period: 19  Name: rL Capacity: 65 Site: 0	Period: 29  Name: rL Capacity: 65 Site: 0	
-LinIta	3	Period: 15  Name: rL Capacity: 65 Site: 0	Period: 23  Name: rL Capacity: 65 Site: 0	Period: 14  Name: rL Capacity: 65 Site: 0	
-LogFilMat	2	Period: 25  Name: rDTM Capacity: 60 Site: 2	Period: 23  Name: rDTM Capacity: 60 Site: 2	
-MatTecAppArcM3	2	Period: 26  Name: r14 Capacity: 28 Site: 1	Period: 8  Name: r14 Capacity: 28 Site: 1	
-MatCarCosResEdiSto	3	Period: 5  Name: rM Capacity: 60 Site: 1	Period: 13  Name: rM Capacity: 60 Site: 1	Period: 12  Name: rM Capacity: 60 Site: 1	
-MetRicStoArt	2	Period: 0  Name: rO Capacity: 30 Site: 1	Period: 1  Name: rO Capacity: 30 Site: 1	
-NumismCS	2	Period: 3  Name: rL Capacity: 65 Site: 0	Period: 10  Name: rL Capacity: 65 Site: 0	
-OrientCS	2	Period: 16  Name: rC1 Capacity: 28 Site: 0	Period: 22  Name: rC1 Capacity: 28 Site: 0	
-Paleoa	3	Period: 5  Name: rC1 Capacity: 28 Site: 0	Period: 10  Name: rC1 Capacity: 28 Site: 0	Period: 14  Name: rC1 Capacity: 28 Site: 0	
-PalLat	3	Period: 10  Name: rM Capacity: 60 Site: 1	Period: 21  Name: rM Capacity: 60 Site: 1	Period: 25  Name: rM Capacity: 60 Site: 1	
-PapiroCS	2	Period: 13  Name: rHTM Capacity: 60 Site: 2	Period: 5  Name: rHTM Capacity: 60 Site: 2	
-ProMedCS	3	Period: 14  Name: rHTM Capacity: 60 Site: 2	Period: 2  Name: rHTM Capacity: 60 Site: 2	Period: 7  Name: rHTM Capacity: 60 Site: 2	
-PsiTur	3	Period: 8  Name: r10 Capacity: 130 Site: 1	Period: 23  Name: r10 Capacity: 130 Site: 1	Period: 28  Name: r10 Capacity: 130 Site: 1	
-SocArt	3	Period: 3  Name: rM Capacity: 60 Site: 1	Period: 24  Name: rM Capacity: 60 Site: 1	Period: 14  Name: rM Capacity: 60 Site: 1	
-Sociol1	3	Period: 22  Name: rH Capacity: 170 Site: 0	Period: 5  Name: rH Capacity: 170 Site: 0	Period: 30  Name: rH Capacity: 170 Site: 0	
-StoConCS	2	Period: 30  Name: rDTM Capacity: 60 Site: 2	Period: 29  Name: rDTM Capacity: 60 Site: 2	
-StoAntStaItaCS	2	Period: 8  Name: r15 Capacity: 46 Site: 1	Period: 9  Name: r15 Capacity: 46 Site: 1	
-StoColIstMus	2	Period: 3  Name: rH Capacity: 170 Site: 0	Period: 15  Name: rH Capacity: 170 Site: 0	
-StoDisGra	2	Period: 5  Name: rVL Capacity: 40 Site: 0	Period: 11  Name: rVL Capacity: 40 Site: 0	
-StoFriCS	2	Period: 20  Name: rHTM Capacity: 60 Site: 2	Period: 19  Name: rHTM Capacity: 60 Site: 2	
-StoLibSta	3	Period: 13  Name: r14 Capacity: 28 Site: 1	Period: 7  Name: r14 Capacity: 28 Site: 1	Period: 12  Name: r14 Capacity: 28 Site: 1	
-StoLibStaCSM1	2	Period: 7  Name: rM Capacity: 60 Site: 1	Period: 19  Name: rM Capacity: 60 Site: 1	
-StoLibStaCSM2	2	Period: 8  Name: rM Capacity: 60 Site: 1	Period: 20  Name: rM Capacity: 60 Site: 1	
-StoRes	3	Period: 17  Name: rHTM Capacity: 60 Site: 2	Period: 28  Name: rHTM Capacity: 60 Site: 2	Period: 16  Name: rHTM Capacity: 60 Site: 2	
-StoArc	3	Period: 20  Name: r14 Capacity: 28 Site: 1	Period: 31  Name: r14 Capacity: 28 Site: 1	Period: 4  Name: r14 Capacity: 28 Site: 1	
-StoArcCon	2	Period: 4  Name: rH Capacity: 170 Site: 0	Period: 25  Name: rH Capacity: 170 Site: 0	
-StoArcMed	2	Period: 14  Name: rVL Capacity: 40 Site: 0	Period: 21  Name: rVL Capacity: 40 Site: 0	
-StoArt	3	Period: 31  Name: r10 Capacity: 130 Site: 1	Period: 19  Name: r10 Capacity: 130 Site: 1	Period: 4  Name: r10 Capacity: 130 Site: 1	
-StoCriArt	2	Period: 13  Name: rL Capacity: 65 Site: 0	Period: 12  Name: rL Capacity: 65 Site: 0	
-StoFilCS	2	Period: 4  Name: rO Capacity: 30 Site: 1	Period: 5  Name: rO Capacity: 30 Site: 1	
-StoFilMedCS	2	Period: 15  Name: rVL Capacity: 40 Site: 0	Period: 26  Name: rVL Capacity: 40 Site: 0	
-StoLinItaCS	2	Period: 16  Name: r14 Capacity: 28 Site: 1	Period: 27  Name: r14 Capacity: 28 Site: 1	
-StoMus	2	Period: 17  Name: rDTM Capacity: 60 Site: 2	Period: 16  Name: rDTM Capacity: 60 Site: 2	
-StoProArtCulMatMed	2	Period: 24  Name: rHTM Capacity: 60 Site: 2	Period: 10  Name: rHTM Capacity: 60 Site: 2	
-StoArtCon2CS	2	Period: 27  Name: rDTM Capacity: 60 Site: 2	Period: 0  Name: rDTM Capacity: 60 Site: 2	
-StoArtMod2CS	2	Period: 26  Name: rM Capacity: 60 Site: 1	Period: 15  Name: rM Capacity: 60 Site: 1	
-StoBib	3	Period: 15  Name: rO Capacity: 30 Site: 1	Period: 8  Name: rO Capacity: 30 Site: 1	Period: 14  Name: rO Capacity: 30 Site: 1	
-StoTecArtM12	3	Period: 9  Name: rVL Capacity: 40 Site: 0	Period: 19  Name: rVL Capacity: 40 Site: 0	Period: 12  Name: rVL Capacity: 40 Site: 0	
-StoTecArtM3	3	Period: 6  Name: rDTM Capacity: 60 Site: 2	Period: 12  Name: rDTM Capacity: 60 Site: 2	Period: 18  Name: rDTM Capacity: 60 Site: 2	
-StoTecArtCS	2	Period: 20  Name: rO Capacity: 30 Site: 1	Period: 30  Name: rO Capacity: 30 Site: 1	
-StoCriCin	2	Period: 31  Name: rL Capacity: 65 Site: 0	Period: 28  Name: rL Capacity: 65 Site: 0	
-StoTecFot	2	Period: 11  Name: r10 Capacity: 130 Site: 1	Period: 22  Name: r10 Capacity: 130 Site: 1	
-StoGre	3	Period: 6  Name: r15 Capacity: 46 Site: 1	Period: 0  Name: r15 Capacity: 46 Site: 1	Period: 7  Name: r15 Capacity: 46 Site: 1	
-StoMed2	3	Period: 12  Name: r10 Capacity: 130 Site: 1	Period: 20  Name: r10 Capacity: 130 Site: 1	Period: 13  Name: r10 Capacity: 130 Site: 1	
-StoModCS	2	Period: 17  Name: rM Capacity: 60 Site: 1	Period: 29  Name: rM Capacity: 60 Site: 1	
-StoMod2	3	Period: 24  Name: r10 Capacity: 130 Site: 1	Period: 25  Name: r10 Capacity: 130 Site: 1	Period: 18  Name: r10 Capacity: 130 Site: 1	
-StoRom	2	Period: 10  Name: rH Capacity: 170 Site: 0	Period: 21  Name: rH Capacity: 170 Site: 0	
-StoRomCS	2	Period: 19  Name: rO Capacity: 30 Site: 1	Period: 26  Name: rO Capacity: 30 Site: 1	
-TedUma	3	Period: 12  Name: rHTM Capacity: 60 Site: 2	Period: 27  Name: rHTM Capacity: 60 Site: 2	Period: 4  Name: rHTM Capacity: 60 Site: 2	
-TopRilMonAnt	3	Period: 8  Name: rVL Capacity: 40 Site: 0	Period: 19  Name: r15 Capacity: 46 Site: 1	Period: 7  Name: rVL Capacity: 40 Site: 0	
+AntCul	2	Period: 20  Name: rH Capacity: 170 Site: 0	Period: 13  Name: rH Capacity: 170 Site: 0	
+ArcClaCS	2	Period: 19  Name: rC1 Capacity: 28 Site: 0	Period: 26  Name: r15 Capacity: 46 Site: 1	
+ArcCla1	3	Period: 16  Name: rM Capacity: 60 Site: 1	Period: 4  Name: rM Capacity: 60 Site: 1	Period: 30  Name: rH Capacity: 170 Site: 0	
+ArcCla2	2	Period: 6  Name: rHTM Capacity: 60 Site: 2	Period: 15  Name: rHTM Capacity: 60 Site: 2	
+ArcCriMed	2	Period: 7  Name: rH Capacity: 170 Site: 0	Period: 3  Name: rH Capacity: 170 Site: 0	
+ArcVicOriAnt	3	Period: 16  Name: rO Capacity: 30 Site: 1	Period: 3  Name: rO Capacity: 30 Site: 1	Period: 22  Name: rH Capacity: 170 Site: 0	
+ArcStoArtMus	2	Period: 22  Name: rDTM Capacity: 60 Site: 2	Period: 15  Name: rDTM Capacity: 60 Site: 2	
+ArcMedCS	2	Period: 5  Name: rH Capacity: 170 Site: 0	Period: 6  Name: rDTM Capacity: 60 Site: 2	
+Archiv	3	Period: 19  Name: r15 Capacity: 46 Site: 1	Period: 7  Name: r15 Capacity: 46 Site: 1	Period: 14  Name: rC1 Capacity: 28 Site: 0	
+ArchivCS	3	Period: 9  Name: rO Capacity: 30 Site: 1	Period: 27  Name: rM Capacity: 60 Site: 1	Period: 23  Name: rM Capacity: 60 Site: 1	
+BioarcCS	2	Period: 12  Name: rDTM Capacity: 60 Site: 2	Period: 9  Name: r15 Capacity: 46 Site: 1	
+Cartog	3	Period: 24  Name: rM Capacity: 60 Site: 1	Period: 21  Name: rM Capacity: 60 Site: 1	Period: 17  Name: rM Capacity: 60 Site: 1	
+ChiResCS	2	Period: 14  Name: rO Capacity: 30 Site: 1	Period: 18  Name: rDTM Capacity: 60 Site: 2	
+Codico	3	Period: 13  Name: rM Capacity: 60 Site: 1	Period: 10  Name: rC1 Capacity: 28 Site: 0	Period: 2  Name: rDTM Capacity: 60 Site: 2	
+CodicoCS	2	Period: 7  Name: rC1 Capacity: 28 Site: 0	Period: 3  Name: rC1 Capacity: 28 Site: 0	
+EcoAzi	3	Period: 22  Name: rM Capacity: 60 Site: 1	Period: 3  Name: rM Capacity: 60 Site: 1	Period: 11  Name: rH Capacity: 170 Site: 0	
+EleInfSciCatBenCulM2	2	Period: 27  Name: rDTM Capacity: 60 Site: 2	Period: 31  Name: rO Capacity: 30 Site: 1	
+EleInfSciCatBenCulM3	3	Period: 21  Name: r15 Capacity: 46 Site: 1	Period: 8  Name: rH Capacity: 170 Site: 0	Period: 4  Name: r15 Capacity: 46 Site: 1	
+EpiLat	3	Period: 27  Name: r15 Capacity: 46 Site: 1	Period: 20  Name: r15 Capacity: 46 Site: 1	Period: 7  Name: rO Capacity: 30 Site: 1	
+Esteti	3	Period: 18  Name: rM Capacity: 60 Site: 1	Period: 14  Name: rH Capacity: 170 Site: 0	Period: 4  Name: rHTM Capacity: 60 Site: 2	
+EtrAntIta	3	Period: 30  Name: rC1 Capacity: 28 Site: 0	Period: 29  Name: rC1 Capacity: 28 Site: 0	Period: 1  Name: rVL Capacity: 40 Site: 0	
+FilCla2	3	Period: 28  Name: rH Capacity: 170 Site: 0	Period: 9  Name: rC1 Capacity: 28 Site: 0	Period: 0  Name: rH Capacity: 170 Site: 0	
+FilTeo	3	Period: 15  Name: rO Capacity: 30 Site: 1	Period: 11  Name: rO Capacity: 30 Site: 1	Period: 28  Name: rM Capacity: 60 Site: 1	
+FonSoc	3	Period: 16  Name: rH Capacity: 170 Site: 0	Period: 30  Name: rL Capacity: 65 Site: 0	Period: 23  Name: rDTM Capacity: 60 Site: 2	
+GeoTur	3	Period: 31  Name: rH Capacity: 170 Site: 0	Period: 25  Name: rH Capacity: 170 Site: 0	Period: 6  Name: rL Capacity: 65 Site: 0	
+Geo1	3	Period: 31  Name: rC1 Capacity: 28 Site: 0	Period: 8  Name: rHTM Capacity: 60 Site: 2	Period: 5  Name: rHTM Capacity: 60 Site: 2	
+Glotto	3	Period: 17  Name: rDTM Capacity: 60 Site: 2	Period: 10  Name: rDTM Capacity: 60 Site: 2	Period: 31  Name: rM Capacity: 60 Site: 1	
+InfDoc	3	Period: 21  Name: rL Capacity: 65 Site: 0	Period: 17  Name: rL Capacity: 65 Site: 0	Period: 4  Name: rL Capacity: 65 Site: 0	
+ItaScr	2	Period: 0  Name: rO Capacity: 30 Site: 1	Period: 15  Name: rM Capacity: 60 Site: 1	
+LabScr	1	Period: 16  Name: rDTM Capacity: 60 Site: 2	
+LegBenCul2	2	Period: 28  Name: r15 Capacity: 46 Site: 1	Period: 17  Name: rHTM Capacity: 60 Site: 2	
+LetCriAnt	3	Period: 2  Name: rH Capacity: 170 Site: 0	Period: 25  Name: rM Capacity: 60 Site: 1	Period: 14  Name: rL Capacity: 65 Site: 0	
+LinLetGre1	3	Period: 19  Name: rM Capacity: 60 Site: 1	Period: 14  Name: rM Capacity: 60 Site: 1	Period: 3  Name: rVL Capacity: 40 Site: 0	
+LinLetLatCS	2	Period: 12  Name: rC1 Capacity: 28 Site: 0	Period: 10  Name: r15 Capacity: 46 Site: 1	
+LinLetLat2	3	Period: 13  Name: rDTM Capacity: 60 Site: 2	Period: 4  Name: rH Capacity: 170 Site: 0	Period: 8  Name: rO Capacity: 30 Site: 1	
+LinGreA	2	Period: 21  Name: rC1 Capacity: 28 Site: 0	Period: 17  Name: rC1 Capacity: 28 Site: 0	
+LinLatA	2	Period: 0  Name: rL Capacity: 65 Site: 0	Period: 29  Name: rH Capacity: 170 Site: 0	
+LinLatB	3	Period: 2  Name: rL Capacity: 65 Site: 0	Period: 28  Name: rC1 Capacity: 28 Site: 0	Period: 20  Name: rC1 Capacity: 28 Site: 0	
+LinGen	3	Period: 14  Name: rDTM Capacity: 60 Site: 2	Period: 22  Name: rO Capacity: 30 Site: 1	Period: 1  Name: rO Capacity: 30 Site: 1	
+LinIta	3	Period: 24  Name: r15 Capacity: 46 Site: 1	Period: 17  Name: r15 Capacity: 46 Site: 1	Period: 23  Name: rL Capacity: 65 Site: 0	
+LogFilMat	2	Period: 20  Name: rDTM Capacity: 60 Site: 2	Period: 13  Name: rO Capacity: 30 Site: 1	
+MatTecAppArcM3	2	Period: 16  Name: rHTM Capacity: 60 Site: 2	Period: 9  Name: rHTM Capacity: 60 Site: 2	
+MatCarCosResEdiSto	3	Period: 9  Name: rM Capacity: 60 Site: 1	Period: 5  Name: rC1 Capacity: 28 Site: 0	Period: 12  Name: r10 Capacity: 130 Site: 1	
+MetRicStoArt	2	Period: 1  Name: rH Capacity: 170 Site: 0	Period: 13  Name: rL Capacity: 65 Site: 0	
+NumismCS	2	Period: 27  Name: rH Capacity: 170 Site: 0	Period: 15  Name: rL Capacity: 65 Site: 0	
+OrientCS	2	Period: 21  Name: rDTM Capacity: 60 Site: 2	Period: 16  Name: r15 Capacity: 46 Site: 1	
+Paleoa	3	Period: 3  Name: r15 Capacity: 46 Site: 1	Period: 14  Name: r14 Capacity: 28 Site: 1	Period: 10  Name: rL Capacity: 65 Site: 0	
+PalLat	3	Period: 26  Name: rDTM Capacity: 60 Site: 2	Period: 1  Name: rHTM Capacity: 60 Site: 2	Period: 16  Name: rL Capacity: 65 Site: 0	
+PapiroCS	2	Period: 11  Name: rDTM Capacity: 60 Site: 2	Period: 4  Name: rO Capacity: 30 Site: 1	
+ProMedCS	3	Period: 2  Name: rM Capacity: 60 Site: 1	Period: 25  Name: rC1 Capacity: 28 Site: 0	Period: 13  Name: rC1 Capacity: 28 Site: 0	
+PsiTur	3	Period: 27  Name: rC1 Capacity: 28 Site: 0	Period: 15  Name: rH Capacity: 170 Site: 0	Period: 22  Name: rC1 Capacity: 28 Site: 0	
+SocArt	3	Period: 6  Name: rO Capacity: 30 Site: 1	Period: 2  Name: rO Capacity: 30 Site: 1	Period: 24  Name: rL Capacity: 65 Site: 0	
+Sociol1	3	Period: 28  Name: rHTM Capacity: 60 Site: 2	Period: 5  Name: rVL Capacity: 40 Site: 0	Period: 14  Name: rHTM Capacity: 60 Site: 2	
+StoConCS	2	Period: 20  Name: rM Capacity: 60 Site: 1	Period: 10  Name: rM Capacity: 60 Site: 1	
+StoAntStaItaCS	2	Period: 9  Name: rDTM Capacity: 60 Site: 2	Period: 3  Name: rDTM Capacity: 60 Site: 2	
+StoColIstMus	2	Period: 2  Name: r15 Capacity: 46 Site: 1	Period: 16  Name: r14 Capacity: 28 Site: 1	
+StoDisGra	2	Period: 7  Name: rL Capacity: 65 Site: 0	Period: 3  Name: rL Capacity: 65 Site: 0	
+StoFriCS	2	Period: 18  Name: rVL Capacity: 40 Site: 0	Period: 24  Name: rHTM Capacity: 60 Site: 2	
+StoLibSta	3	Period: 5  Name: rO Capacity: 30 Site: 1	Period: 7  Name: rM Capacity: 60 Site: 1	Period: 12  Name: rL Capacity: 65 Site: 0	
+StoLibStaCSM1	2	Period: 12  Name: rM Capacity: 60 Site: 1	Period: 19  Name: rO Capacity: 30 Site: 1	
+StoLibStaCSM2	2	Period: 8  Name: rL Capacity: 65 Site: 0	Period: 29  Name: rDTM Capacity: 60 Site: 2	
+StoRes	3	Period: 17  Name: rH Capacity: 170 Site: 0	Period: 28  Name: rO Capacity: 30 Site: 1	Period: 10  Name: rH Capacity: 170 Site: 0	
+StoArc	3	Period: 11  Name: rM Capacity: 60 Site: 1	Period: 0  Name: rM Capacity: 60 Site: 1	Period: 31  Name: rL Capacity: 65 Site: 0	
+StoArcCon	2	Period: 19  Name: rHTM Capacity: 60 Site: 2	Period: 25  Name: rDTM Capacity: 60 Site: 2	
+StoArcMed	2	Period: 21  Name: rHTM Capacity: 60 Site: 2	Period: 11  Name: rHTM Capacity: 60 Site: 2	
+StoArt	3	Period: 7  Name: rDTM Capacity: 60 Site: 2	Period: 1  Name: rDTM Capacity: 60 Site: 2	Period: 29  Name: rO Capacity: 30 Site: 1	
+StoCriArt	2	Period: 5  Name: rM Capacity: 60 Site: 1	Period: 12  Name: r14 Capacity: 28 Site: 1	
+StoFilCS	2	Period: 13  Name: r15 Capacity: 46 Site: 1	Period: 11  Name: r15 Capacity: 46 Site: 1	
+StoFilMedCS	2	Period: 17  Name: rVL Capacity: 40 Site: 0	Period: 21  Name: rO Capacity: 30 Site: 1	
+StoLinItaCS	2	Period: 27  Name: rL Capacity: 65 Site: 0	Period: 22  Name: rL Capacity: 65 Site: 0	
+StoMus	2	Period: 8  Name: r15 Capacity: 46 Site: 1	Period: 27  Name: rO Capacity: 30 Site: 1	
+StoProArtCulMatMed	2	Period: 6  Name: rM Capacity: 60 Site: 1	Period: 23  Name: rO Capacity: 30 Site: 1	
+StoArtCon2CS	2	Period: 25  Name: rL Capacity: 65 Site: 0	Period: 0  Name: rHTM Capacity: 60 Site: 2	
+StoArtMod2CS	2	Period: 24  Name: rO Capacity: 30 Site: 1	Period: 19  Name: rDTM Capacity: 60 Site: 2	
+StoBib	3	Period: 15  Name: rC1 Capacity: 28 Site: 0	Period: 20  Name: r14 Capacity: 28 Site: 1	Period: 9  Name: rH Capacity: 170 Site: 0	
+StoTecArtM12	3	Period: 29  Name: rL Capacity: 65 Site: 0	Period: 1  Name: rM Capacity: 60 Site: 1	Period: 19  Name: rL Capacity: 65 Site: 0	
+StoTecArtM3	3	Period: 0  Name: rC1 Capacity: 28 Site: 0	Period: 18  Name: r15 Capacity: 46 Site: 1	Period: 12  Name: r15 Capacity: 46 Site: 1	
+StoTecArtCS	2	Period: 26  Name: rO Capacity: 30 Site: 1	Period: 20  Name: rO Capacity: 30 Site: 1	
+StoCriCin	2	Period: 30  Name: rM Capacity: 60 Site: 1	Period: 29  Name: rM Capacity: 60 Site: 1	
+StoTecFot	2	Period: 10  Name: rO Capacity: 30 Site: 1	Period: 23  Name: r15 Capacity: 46 Site: 1	
+StoGre	3	Period: 6  Name: rH Capacity: 170 Site: 0	Period: 12  Name: rO Capacity: 30 Site: 1	Period: 1  Name: r10 Capacity: 130 Site: 1	
+StoMed2	3	Period: 26  Name: rC1 Capacity: 28 Site: 0	Period: 8  Name: rC1 Capacity: 28 Site: 0	Period: 16  Name: rC1 Capacity: 28 Site: 0	
+StoModCS	2	Period: 0  Name: rDTM Capacity: 60 Site: 2	Period: 8  Name: rDTM Capacity: 60 Site: 2	
+StoMod2	3	Period: 19  Name: rH Capacity: 170 Site: 0	Period: 12  Name: rH Capacity: 170 Site: 0	Period: 24  Name: rH Capacity: 170 Site: 0	
+StoRom	2	Period: 23  Name: rHTM Capacity: 60 Site: 2	Period: 25  Name: rO Capacity: 30 Site: 1	
+StoRomCS	2	Period: 18  Name: rH Capacity: 170 Site: 0	Period: 24  Name: rDTM Capacity: 60 Site: 2	
+TedUma	3	Period: 9  Name: rL Capacity: 65 Site: 0	Period: 1  Name: rL Capacity: 65 Site: 0	Period: 17  Name: rO Capacity: 30 Site: 1	
+TopRilMonAnt	3	Period: 5  Name: rL Capacity: 65 Site: 0	Period: 18  Name: rC1 Capacity: 28 Site: 0	Period: 11  Name: rC1 Capacity: 28 Site: 0	
