@@ -27,13 +27,13 @@ int myrandomF(int i) {
 
 FeasibleTable::FeasibleTable(vector<Course> course, vector<Venue> rooms,
                              int maxPeriod, int periods_in_day,
-                             vector<Curricula> curCodes) {
+                             vector<Curricula> curCodes) : course(course), periods_in_day(periods_in_day), rooms(rooms) {
   this->check = true;
-  this->course = course;
+  //this->course = course;
   this->maxPeriod = maxPeriod + 1;
   // cout<<"Maximum Period is: "<<this->maxPeriod;
-  this->periods_in_day = periods_in_day;
-  this->rooms = rooms;
+  //this->periods_in_day = periods_in_day;
+  //this->rooms = rooms;
   this->createVenueTimeList(rooms);
   this->globalBest = 5000000;  // set global best to very large number
 
@@ -51,7 +51,7 @@ FeasibleTable::FeasibleTable(vector<Course> course, vector<Venue> rooms,
   while (cIterator != curCodes.end()) {
     Curricula* curri = &(*cIterator);
     this->curCodes.push_back(curri->getCode());
-    cIterator++;
+    ++cIterator;
   }
 }
 
@@ -72,7 +72,7 @@ void FeasibleTable::createVenueTimeList(vector<Venue> rooms) {
       RoomTime rt(i, v);
       this->venueTime.push_back(rt);
     }
-    vIterator++;
+    ++vIterator;
   }
   // this->printRoomTime();
   // cout<<&v;
@@ -104,7 +104,7 @@ void FeasibleTable::printRoomTime() {
 
     cout << v.getPeriod() << " " << v.toString() << endl;
 
-    rtIterator++;
+    ++rtIterator;
   }
 }
 
@@ -119,11 +119,12 @@ void FeasibleTable::printRoomTime() {
 void FeasibleTable::initializeAdjacentMatrix() {
   // this->printRoomTime();
   int i = 0;
-  int j = 0;
+  //int j = 0;
   std::vector<Course>::iterator courseIterator = this->course.begin();
   std::vector<RoomTime>::iterator roomTimeIterator;
 
   while (courseIterator != this->course.end()) {
+  	int j;
     Course* c = &(*courseIterator);
     vector<string> roomConstr = c->getRoomConstraint();
     vector<int> unAvailConstr = c->getUnavailableConstraint();
@@ -172,9 +173,9 @@ void FeasibleTable::initializeAdjacentMatrix() {
         // "<<c->getCode()<<" "<<rt.toString()<<endl;
       }
       j++;
-      roomTimeIterator++;
+      ++roomTimeIterator;
     }
-    courseIterator++;
+    ++courseIterator;
     i++;
   }
 }
@@ -198,7 +199,7 @@ void FeasibleTable::antGraphWalk(vector<CourseRoomTime>* timetable, int cycle,
   while (courseIterator != this->course.end()) {
     Course c = *courseIterator;
     copyCourse.push_back(c);
-    courseIterator++;
+    ++courseIterator;
   }
 
   // unsigned int rSeed = time(NULL) * cycle;
@@ -257,7 +258,7 @@ void FeasibleTable::antGraphWalk(vector<CourseRoomTime>* timetable, int cycle,
                       curriculaPeriod[rt.getPeriod()].end(), code_str);
         if (findCode_str == curriculaPeriod[rt.getPeriod()].end())
           curriculaPeriod[rt.getPeriod()].push_back(code_str);
-        itcCodes++;
+        ++itcCodes;
       }
 
       // add lecturer to lecturerperiod
@@ -282,7 +283,7 @@ void FeasibleTable::antGraphWalk(vector<CourseRoomTime>* timetable, int cycle,
     }
     // cout<<"Assigned "<<c.getCode()<<"  "<<assigned<<" times"<<endl;
 
-    copyCourseIterator++;
+    ++copyCourseIterator;
   }
   // cout<<endl<<"********************"<<endl;
   ImproveTable impTable(getVenueTime(), rooms, getCurCodes(), getCourse(),
@@ -427,7 +428,7 @@ vector<RoomTime> FeasibleTable::filterVenueListTabu(
         std::find(tabuList.begin(), tabuList.end(), rt);
     if (findRT == tabuList.end())  // Not in tabuList
       tabuFiltered.push_back(rt);
-    rtIterator++;
+    ++rtIterator;
   }
   if (tabuFiltered.size() > 0) return tabuFiltered;
 
@@ -436,12 +437,13 @@ vector<RoomTime> FeasibleTable::filterVenueListTabu(
 
 vector<RoomTime> FeasibleTable::getVenueTimeVertices(const Course& c) {
   vector<RoomTime> adjacent;
-  int amount = 0;
+  
   std::vector<Course>::iterator findIter =
       std::find(this->course.begin(), this->course.end(), c);
   if (findIter != this->course.end()) {
     int index = std::distance(this->course.begin(), findIter);
     // cout<<course[index].getCode()<<"  "<<index<<"---";
+    int amount = 0;
     for (std::size_t i = 0; i < this->venueTime.size(); i++) {
       if (this->adjacentMatrix[index][i] > 0) {
         adjacent.push_back(*(&this->venueTime[i]));
@@ -485,11 +487,11 @@ vector<RoomTime> FeasibleTable::filterCurriculumPeriodTabu(
           std::find(curriculaPeriod[rt.getPeriod()].begin(),
                     curriculaPeriod[rt.getPeriod()].end(), code);
       if (findCode != curriculaPeriod[rt.getPeriod()].end()) l = false;
-      ccIterator++;
+      ++ccIterator;
     }
     if (l)  // if no clash add to filtered
       currFiltered.push_back(rt);
-    rtIterator++;
+    ++rtIterator;
   }
 
   if (currFiltered.size() > 0) return currFiltered;
@@ -523,7 +525,7 @@ vector<RoomTime> FeasibleTable::filterLecturerPeriodTabu(
         lecturerPeriod[rt.getPeriod()]
             .end())  // if not assigning same lecturer to same period
       lecFiltered.push_back(rt);
-    rtIterator++;
+    ++rtIterator;
   }
 
   if (lecFiltered.size() > 0) return lecFiltered;
@@ -550,7 +552,7 @@ vector<RoomTime> FeasibleTable::filterDayListTabu(vector<RoomTime> roomTimes,
     if (findDay == dayTabu.end())  // if not in day tabu
       dayFiltered.push_back(rt);
 
-    rtIterator++;
+    ++rtIterator;
   }
 
   if (dayFiltered.size() > 0) return dayFiltered;
@@ -665,7 +667,7 @@ int FeasibleTable::NumberHCV(vector<CourseRoomTime> timetable) {
           curGlobal.push_back(cpCode);
         }
         cpi++;
-        curIterator++;
+        ++curIterator;
       }
 
       // get room clash violations
@@ -713,7 +715,7 @@ int FeasibleTable::NumberHCV(vector<CourseRoomTime> timetable) {
           find(unavailableConst.begin(), unavailableConst.end(), i);
       if (findUnavailablePeriod != unavailableConst.end())
         unavailableViolation++;
-      cIterator++;
+      ++cIterator;
     }
 
     periodCourse.erase(periodCourse.begin(), periodCourse.end());
@@ -751,7 +753,7 @@ vector<Course> FeasibleTable::getPeriodCourse(
       // if (findCourse == cees.end())
       // cees.push_back(cous);
     }
-    tIterator++;
+    ++tIterator;
   }
   return cees;
 }
@@ -772,7 +774,7 @@ string FeasibleTable::getVenueCourse(int period, Course c,
     if (cous == c && crt.getVenueTime().getPeriod() == period &&
         cous.isEmpty() == false)
       return crt.getVenueTime().getRoom().getName();
-    crtIterator++;
+    ++crtIterator;
   }
   return v;
 }
@@ -822,7 +824,7 @@ void FeasibleTable::updateAntTrail(int timetableQuality,
     if (adjacentMatrix[indexCourse][indexRoomTime] < t_min) {
       adjacentMatrix[indexCourse][indexRoomTime] = t_min;
     }
-    crtIterator++;
+    ++crtIterator;
   }
 }
 

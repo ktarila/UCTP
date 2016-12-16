@@ -8,19 +8,28 @@ CXXFLAGS=-O3 -std=c++11 -pthread -D_DEBUG -g3 -Wall
 LIBS = /user/local/lib/*.so
 
 
-default: antSchedule
+default: antSchedule geneticScheduleGAUL
 
 antSchedule:  ./Venues/venue.o  ./Schedule/courseroomtime.o ./Schedule/feasibletable.o ./Schedule/roompath.o ./Schedule/improvetable.o  ./Schedule/path.o ./Schedule/smethods.o ./Schedule/venueTime.o  ./Curricula/curricula.o  ./Courses/course.o ./Schedule/enhancement.o  Data.o Timetable.o
 	$(CXX)  $(CXXFLAGS) -o antSchedule ./Venues/venue.o  ./Schedule/courseroomtime.o ./Schedule/feasibletable.o ./Schedule/improvetable.o ./Schedule/roompath.o ./Schedule/path.o ./Schedule/smethods.o ./Schedule/venueTime.o  ./Curricula/curricula.o  ./Courses/course.o ./Schedule/enhancement.o Data.o Timetable.o
 
-geneticSchedule: ./Venues/venue.o  ./Schedule/courseroomtime.o ./Schedule/feasibletable.o ./Schedule/improvetable.o ./Schedule/enhancement.o ./Schedule/roompath.o ./Schedule/path.o ./Schedule/smethods.o ./Schedule/venueTime.o  ./Curricula/curricula.o  ./Courses/course.o  Data.o ./Schedule/UCTPEvalOp.o genAssignment.o
-	$(CXX)  $(CXXFLAGS) -o geneticSchedule ./Venues/venue.o  ./Schedule/courseroomtime.o ./Schedule/feasibletable.o ./Schedule/improvetable.o ./Schedule/enhancement.o ./Schedule/roompath.o ./Schedule/path.o ./Schedule/smethods.o ./Schedule/venueTime.o  ./Curricula/curricula.o  ./Courses/course.o  Data.o ./Schedule/UCTPEvalOp.o genAssignment.o $(LIBS)
+#geneticScheduleGAUL: geneticAssignment.cpp 
+#	g++  -o geneticAssignment geneticAssignment.cpp -O2 -Wall   -L/usr/lib -lm -lmpi -lgaul -lgaul_util -fopenmp -lgaul -lgaul_util -lm -lmpi -lgaul -lgaul_util
+
+geneticScheduleGAUL: ./Venues/venue.o  ./Schedule/courseroomtime.o ./Schedule/feasibletable.o \
+	./Schedule/improvetable.o ./Schedule/enhancement.o ./Schedule/roompath.o ./Schedule/path.o \
+	./Schedule/smethods.o ./Schedule/venueTime.o  ./Curricula/curricula.o  ./Courses/course.o  \
+	Data.o  geneticAssignment.o
+	$(CXX)  $(CXXFLAGS) -o geneticSchedule ./Venues/venue.o  ./Schedule/courseroomtime.o \
+	./Schedule/feasibletable.o ./Schedule/improvetable.o ./Schedule/enhancement.o ./Schedule/roompath.o \
+	./Schedule/path.o ./Schedule/smethods.o ./Schedule/venueTime.o  ./Curricula/curricula.o  \
+	./Courses/course.o  Data.o  geneticAssignment.o -L/usr/lib -lm -lmpi -lgaul -lgaul_util -fopenmp -lgaul -lgaul_util -lm -lmpi -lgaul -lgaul_util
 
 Timetable.o:  Timetable.cpp ReadCRT.h data.h ./Schedule/smethods.h ./Schedule/feasibletable.h ./Schedule/improvetable.h
 	$(CXX) $(CXXFLAGS) -c Timetable.cpp
 
-genAssignment.o:  genAssignment.cpp ReadCRT.h data.h ./Schedule/smethods.h ./Schedule/feasibletable.h ./Schedule/UCTPEvalOp.hpp
-	$(CXX) $(CXXFLAGS) -c genAssignment.cpp
+geneticAssignment.o:  geneticAssignment.cpp ReadCRT.h data.h ./Schedule/smethods.h ./Schedule/feasibletable.h ./Schedule/improvetable.h ./Schedule/enhancement.h ./Schedule/path.h
+	$(CXX) $(CXXFLAGS) -c geneticAssignment.cpp -L/usr/lib -lm -lmpi -lgaul -lgaul_util -fopenmp -lgaul -lgaul_util -lm -lmpi -lgaul -lgaul_util
 
 # To create the object file course:
 course.o:  ./Courses/course.cpp ./Courses/course.h
@@ -75,4 +84,8 @@ Data.o:  Data.cpp data.h ./Courses/course.h ./Venues/venue.h ./Curricula/curricu
 	$(CXX) $(CXXFLAGS) -c Data.cpp
 
 clean:
-	$(RM) *.o *~  geneticSchedule antSchedule ./Schedule/UCTPEvalOP.o ./Venues/venue.o ./Schedule/enhancement.o ./Schedule/courseroomtime.o ./Schedule/feasibletable.o ./Schedule/feasibletable.o ./Schedule/improvetable.o ./Schedule/path.o ./Schedule/roompath.o ./Schedule/smethods.o ./Schedule/venueTime.o  ./Curricula/curricula.o  ./Courses/course.o  Data.o Timetable.o
+	$(RM) *.o *~  geneticSchedule antSchedule ./Schedule/UCTPEvalOP.o ./Venues/venue.o \
+	./Schedule/enhancement.o ./Schedule/courseroomtime.o ./Schedule/feasibletable.o \
+	./Schedule/feasibletable.o ./Schedule/improvetable.o ./Schedule/path.o \
+	./Schedule/roompath.o ./Schedule/smethods.o ./Schedule/venueTime.o  \
+	./Curricula/curricula.o  ./Courses/course.o  Data.o Timetable.o geneticAssignment geneticAssignment.o
