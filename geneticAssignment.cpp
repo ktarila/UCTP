@@ -30,6 +30,7 @@ extern "C" {
 using namespace std;
 
 long evaluation_count=0;  /* Number of fitness evaluations performed. */
+int scale = 1000000; /* Linear scale fitness value */
 vector<CourseRoomTime> applyAllele(const int &allele,
                                    const vector<CourseRoomTime> &oldSchedule) {
   int fSize = SM::iT.getFeasibleTable().size();
@@ -88,6 +89,7 @@ static boolean softconstraint_score(population *pop, entity *entity) {
     int allele = ((int *)entity->chromosome[0])[k];
     //entity->fitness += (5-allele)*(5-allele);
     tempSchedule = applyAllele(allele, tSchedule);
+    //tempSchedule = SM::iiT.bestNeighbour(allele, tSchedule);
     tSchedule = tempSchedule;
     }
 
@@ -96,6 +98,9 @@ static boolean softconstraint_score(population *pop, entity *entity) {
 
 /* Normalize fitness so smaller positive values are better. */
   entity->fitness = 1.0/(1.0+entity->fitness);
+
+  //linear scale fitness
+  entity->fitness = scale * entity->fitness;
 
   evaluation_count++;
   return TRUE;
@@ -143,7 +148,7 @@ static boolean struggle_generation_hook(int generation, population *pop)
     {
     printf("Generation = %d\n", generation);
     printf("Number of evaluations = %ld\n", evaluation_count);
-    double eval = (1 - ga_get_entity_from_rank(pop,0)->fitness)/ga_get_entity_from_rank(pop,0)->fitness;
+    double eval = (scale - ga_get_entity_from_rank(pop,0)->fitness)/ga_get_entity_from_rank(pop,0)->fitness;
     printf("Best fitness = %f\n", ga_get_entity_from_rank(pop,0)->fitness);
     printf("Best Evaluation = %f\n", eval);
     ga_fitness_mean_stddev(pop, &average, &stddev);
@@ -217,19 +222,18 @@ int main(int argc, char **argv) {
                    ft.getPeriodsInDay());
 
   // improve timetable static constant
-  // auto timet = ite.runImprovement(2, 1, 1);
-  // ft.setFeasibleTable(timet);
+  //auto timet = ite.runImprovement(2, 1, 1);
+  //ft.setFeasibleTable(timet);
   auto fromOld = ft.getFeasibleTable();
   cout << " Timetable of size: " << fromOld.size() << " has " << ft.NumberHCV()
        << " number of hard constraint violations and " << ite.NumberSCV(fromOld)
        << " soft constraint violations " << endl;
 
-  // Enhancement en(ft); //constructor
-  // auto timet = en.runEnhancement(10, 4, 1);
-  // ft.setFeasibleTable(timet);
+  //Enhancement en(ft); //constructor
+  //auto timet = en.runEnhancement(5, 3, 1);
+  //ft.setFeasibleTable(timet);
   // auto fSchedule = ft.getFeasibleTable();
-  // cout<<" Timetable has "<<ft.NumberHCV()<<" number of hard constraint
-  // violations and SCV: "<<ite.NumberSCV(timet) <<endl;
+  //cout<<" Timetable has "<<ft.NumberHCV()<<" number of hard constraint violations and SCV: "<<ite.NumberSCV(timet) <<endl;
 
   // feasible timetable constraints static constant
    SM::iT = ft;
@@ -251,11 +255,14 @@ int main(int argc, char **argv) {
              (SM::iT.getFeasibleTable().size() + SM::iiT.getMaxPeriod() + 1)) -
             1;
 
+  int chromLength = fromOld.size();
+  cout<<"Maximum: "<< max<<endl;
+
   //int max = 10;
   pop = ga_genesis_integer(
       100,                    /* const int              population_size */
       1,                      /* const int              num_chromo */
-      300,                    /* const int              len_chromo */
+      chromLength,                    /* const int              len_chromo */
       struggle_generation_hook,                   /* GAgeneration_hook      generation_hook */
       NULL,                   /* GAiteration_hook       iteration_hook */
       NULL,                   /* GAdata_destructor      data_destructor */
@@ -263,10 +270,10 @@ int main(int argc, char **argv) {
       softconstraint_score,   /* GAevaluate             evaluate */
       ga_seed_integer_random, /* GAseed                 seed */
       NULL,                   /* GAadapt                adapt */
-      ga_select_one_best,      /* GAselect_one           select_one */
-      ga_select_two_roulette,      /* GAselect_two           select_two */
+      ga_select_one_sus,      /* GAselect_one           select_one */
+      ga_select_two_sus,      /* GAselect_two           select_two */
       ga_mutate_integer_singlepoint_drift, /* GAmutate               mutate */
-      ga_crossover_integer_allele_mixing, /* GAcrossover            crossover */
+      ga_crossover_integer_singlepoints, /* GAcrossover            crossover */
       NULL,                              /* GAreplace   replace */
       NULL                               /* vpointer    User data */
       );
@@ -284,7 +291,7 @@ int main(int argc, char **argv) {
       );
 
   ga_evolution(pop, /* population              *pop */
-               20  /* const int               max_generations */
+               250  /* const int               max_generations */
                );
 
   /* Display final solution. */
@@ -294,7 +301,7 @@ int main(int argc, char **argv) {
   printf("%s\n", beststring);
   printf("With score = %f\n", ga_get_entity_from_rank(pop, 0)->fitness);
   double eval = (1 - ga_get_entity_from_rank(pop,0)->fitness)/ga_get_entity_from_rank(pop,0)->fitness;
-  printf("And evaluation quality = %f\n", eval);
+  printf("And evaluation quality = %f\n", eval/scale);
 
   /* Free memory. */
   ga_extinction(pop);
