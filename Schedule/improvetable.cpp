@@ -896,6 +896,7 @@ CourseRoomTime ImproveTable::selectSwapCRT(vector<CourseRoomTime> timetable, con
 		Path path(1, rowCRT, colCRT);
 		//cout<<adjacentMatrix[feasibleIndex][j]<<"  ";
 
+		//TODO - change this apply path to kempe swap
 		auto newT = path.applyPath(timetable, &tempPath);
 		auto newRowCRT = tempPath.getRowCrt();
 		auto newColCRT = tempPath.getColCrt();

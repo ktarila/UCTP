@@ -88,8 +88,8 @@ static boolean softconstraint_score(population *pop, entity *entity) {
     {
     int allele = ((int *)entity->chromosome[0])[k];
     //entity->fitness += (5-allele)*(5-allele);
-    tempSchedule = applyAllele(allele, tSchedule);
-    //tempSchedule = SM::iiT.bestNeighbour(allele, tSchedule);
+    //tempSchedule = applyAllele(allele, tSchedule);
+    tempSchedule = SM::iiT.bestNeighbour(allele, tSchedule);
     tSchedule = tempSchedule;
     }
 
@@ -180,8 +180,8 @@ static boolean struggle_generation_hook(int generation, population *pop)
  **********************************************************************/
 
 int main(int argc, char **argv) {
-  const char *filename = "InputData/ITC-2007_ectt/comp11.ectt";
-  //const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp11.sol";
+  const char *filename = "InputData/ITC-2007_ectt/comp01.ectt";
+  const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp01.sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   Data *data = new Data(filename);
 
@@ -208,10 +208,10 @@ int main(int argc, char **argv) {
   cout << "Construction ...." << endl;
   double wall0 =  SM::get_wall_time();
   double cpu0  = SM::get_cpu_time();
-  ft.antColonyThread(8, 500);
-  //auto fromOld = readCRT(data->getCourses(), data->getRooms(),
-  //                       data->getNumPeriodsPerDay(), solfilename);
-  //ft.setFeasibleTable(fromOld);
+  ft.antColonyThread(1, 1);
+  auto fromOld = readCRT(data->getCourses(), data->getRooms(),
+                         data->getNumPeriodsPerDay(), solfilename);
+  ft.setFeasibleTable(fromOld);
   double wall6 = SM::get_wall_time();
   double cpu6 = SM::get_cpu_time();
   std::cout << endl
@@ -224,13 +224,13 @@ int main(int argc, char **argv) {
   // improve timetable static constant
   //auto timet = ite.runImprovement(2, 1, 1);
   //ft.setFeasibleTable(timet);
-  auto fromOld = ft.getFeasibleTable();
+  //auto fromOld = ft.getFeasibleTable();
   cout << " Timetable of size: " << fromOld.size() << " has " << ft.NumberHCV()
        << " number of hard constraint violations and " << ite.NumberSCV(fromOld)
        << " soft constraint violations " << endl;
 
   //Enhancement en(ft); //constructor
-  //auto timet = en.runEnhancement(5, 3, 1);
+  //auto timet = en.runEnhancement(4, 3, 1);
   //ft.setFeasibleTable(timet);
   // auto fSchedule = ft.getFeasibleTable();
   //cout<<" Timetable has "<<ft.NumberHCV()<<" number of hard constraint violations and SCV: "<<ite.NumberSCV(timet) <<endl;
@@ -251,18 +251,19 @@ int main(int argc, char **argv) {
   size_t beststrlen = 0;   /* Length of beststring. */
 
   random_seed(20092004);
-  int max = (SM::iT.getFeasibleTable().size() *
-             (SM::iT.getFeasibleTable().size() + SM::iiT.getMaxPeriod() + 1)) -
-            1;
+  //int max = (SM::iT.getFeasibleTable().size() *
+  //           (SM::iT.getFeasibleTable().size() + SM::iiT.getMaxPeriod() + 1)) -
+  //          1;
 
-  int chromLength = fromOld.size();
+  int max = fromOld.size() - 1; 
+  //int chromLength = fromOld.size();
   cout<<"Maximum: "<< max<<endl;
 
   //int max = 10;
   pop = ga_genesis_integer(
       100,                    /* const int              population_size */
       1,                      /* const int              num_chromo */
-      chromLength,                    /* const int              len_chromo */
+      30,                    /* const int              len_chromo */
       struggle_generation_hook,                   /* GAgeneration_hook      generation_hook */
       NULL,                   /* GAiteration_hook       iteration_hook */
       NULL,                   /* GAdata_destructor      data_destructor */

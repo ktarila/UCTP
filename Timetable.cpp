@@ -13,7 +13,7 @@ using namespace std;
 int main() {
   srand(time(NULL));
   const char* filename = "InputData/ITC-2007_ectt/comp11.ectt";
-  const char* solfilename = "/home/patrick/work/UCTP-CPP/Results/comp11.sol";
+  //const char* solfilename = "/home/patrick/work/UCTP-CPP/Results/comp11.sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   Data* data = new Data(filename);
 
@@ -42,7 +42,7 @@ int main() {
   cout << "Construction ...." << endl;
   double wall0 = SM::get_wall_time();
   double cpu0 = SM::get_cpu_time();
-  ft.antColonyThread(2, 100);
+  ft.antColonyThread(8, 100);
 
   //auto fromOld = readCRT(data->getCourses(), data->getRooms(),
   //                       data->getNumPeriodsPerDay(), solfilename);
@@ -63,31 +63,34 @@ int main() {
   // number in range [min max]
   // cout<<"Index One: "<<crtOneIndex<<" Index Two: "<<crtTwoIndex<<endl;
   // auto timet = impTable.singleMove(10, 180, ft.getFeasibleTable());
-  /*auto timet= fromOld;
+  //auto timet= fromOld;
+  auto fromOld = ft.getFeasibleTable();
   for (int j =0; j < 10; j++)
   {
       for (size_t i =0; i < ft.getFeasibleTable().size(); i++)
       {
               cout<<"Iteration "<<i<<": ";
-              timet = impTable.bestNeighbour((int)i, ft.getFeasibleTable());
+              auto timet = impTable.bestNeighbour((int)i, ft.getFeasibleTable());
               auto currentSCV = impTable.NumberSCV(timet);
               std::cout<< currentSCV<<" is the current SCV"<<endl;
               if (currentSCV < impTable.NumberSCV(fromOld))
               {
                       //cout<<" I am here "<<impTable.NumberSCV(fromOld)<<endl;
                       fromOld = timet;
+                      ft.setFeasibleTable(fromOld);
                       //timet = fromOld;
               }
       }
-      ft.setFeasibleTable(fromOld);
       cout<<"number of violations in iteration "<<j << " is "<<
-  impTable.NumberSCV(ft.getFeasibleTable());
-  }*/
+             impTable.NumberSCV(ft.getFeasibleTable());
+  }
 
   // vector<int> chromosome;
   // auto timet = impTable.applyChomosome(chromosome, ft.getFeasibleTable());
   // auto timet = impTable.bestNeighbour(10, ft.getFeasibleTable());
   // auto newT = timet;
+
+  //auto newT = impTable.runImprovement(10, 3, 1);
   auto newT = ft.getFeasibleTable();
   std::stringstream ss;
   ss << "Solutions/" << data->getName();
