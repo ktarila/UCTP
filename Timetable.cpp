@@ -52,9 +52,7 @@ int main() {
 
   cout << endl << endl << "Improvement Phase..." << endl;
 
-  ImproveTable impTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
-                        ft.getCourse(), ft.getFeasibleTable(),
-                        ft.getMaxPeriod(), ft.getPeriodsInDay());
+  
   // int max = ft.getFeasibleTable().size() - 1;
   // int min = 0;
   // int crtOneIndex = min + (rand() % (int)(max - min + 1));  //generate random
@@ -64,7 +62,7 @@ int main() {
   // cout<<"Index One: "<<crtOneIndex<<" Index Two: "<<crtTwoIndex<<endl;
   // auto timet = impTable.singleMove(10, 180, ft.getFeasibleTable());
   //auto timet= fromOld;
-  auto fromOld = ft.getFeasibleTable();
+  /*auto fromOld = ft.getFeasibleTable();
   for (int j =0; j < 10; j++)
   {
       for (size_t i =0; i < ft.getFeasibleTable().size(); i++)
@@ -83,15 +81,26 @@ int main() {
       }
       cout<<"number of violations in iteration "<<j << " is "<<
              impTable.NumberSCV(ft.getFeasibleTable());
-  }
+  }*/
 
   // vector<int> chromosome;
   // auto timet = impTable.applyChomosome(chromosome, ft.getFeasibleTable());
   // auto timet = impTable.bestNeighbour(10, ft.getFeasibleTable());
   // auto newT = timet;
 
-  //auto newT = impTable.runImprovement(10, 3, 1);
-  auto newT = ft.getFeasibleTable();
+  //auto newT = impTable.runImprovement(10, 3, 3);
+  //enhance table by moves
+  Enhancement en(ft); //constructor
+  auto newT = en.runEnhancement(4, 3, 1);
+  ft.setFeasibleTable(newT);
+
+  //final improvement with kempe swaps
+  ImproveTable impTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
+                        ft.getCourse(), ft.getFeasibleTable(),
+                        ft.getMaxPeriod(), ft.getPeriodsInDay());
+  newT = impTable.runImprovement(10, 3, 3);
+  //ft.setFeasibleTable(timet);
+  //auto newT = ft.getFeasibleTable();
   std::stringstream ss;
   ss << "Solutions/" << data->getName();
   impTable.writeTimetableToFileSolutionFormat(ss.str(), newT);

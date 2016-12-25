@@ -1110,5 +1110,216 @@ vector<CourseRoomTime> Enhancement::antColonySoftThread(const int& numberAnts, c
 
 }
 
+vector<CourseRoomTime> Enhancement::applyEnhancementSequence(vector<int> &seq, vector<CourseRoomTime>& timetable,  bool accept)
+{
+	vector<int> sequence(this->fullSchedule.size());
+	auto schedule = timetable;
+	for (std::size_t i = 0; i < seq.size(); i++ ){
+		int nextCRT = seq[i];
+
+		//CRT is not out of bounds
+		if (nextCRT <= (int)timetable.size()){
+			auto tempSchedule = this->seqMoveToBest(nextCRT, schedule, accept);
+			schedule = tempSchedule;
+		}
+
+	}
+	return schedule;
+}
 
 
+vector<CourseRoomTime> Enhancement::seqMoveToBest(int crtIndex, vector<CourseRoomTime> &timetable, bool accept )
+{
+	CourseRoomTime c;
+	CourseRoomTime crt = timetable[crtIndex];
+	auto tempSchedule = timetable;
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	double number = rand_r(&seed)/(double)RAND_MAX;
+	
+
+	std::vector<CourseRoomTime>::iterator findCRT = std::find(tempSchedule.begin(), tempSchedule.end(), crt);
+	int indexInTS = std::distance(tempSchedule.begin(), findCRT);
+	if (findCRT != tempSchedule.end())
+	{
+		int min = this->NumberSCV(tempSchedule);
+		//int min = RAND_MAX;
+		auto bestSchedule = tempSchedule;
+		auto newTemp = tempSchedule;
+
+		//swap with course // swap room // swap time
+
+		auto swapTemp = tempSchedule;
+		for (auto &swapCRT:swapTemp)
+		{
+			if (swapCRT.getCourse().isEmpty() == false)
+			{
+
+				//swap course
+				newTemp = tempSchedule;
+				std::vector<CourseRoomTime>::iterator tempITE = std::find(tempSchedule.begin(), tempSchedule.end(), swapCRT);
+				int swapIndex = std::distance(tempSchedule.begin(), tempITE);
+				auto swapC = swapCRT;
+				int period1 = swapCRT.getVenueTime().getPeriod();
+				int period2 = crt.getVenueTime().getPeriod();
+				newTemp[indexInTS].setCourse(swapCRT.getCourse());
+				newTemp[swapIndex].setCourse(crt.getCourse());
+				int v1 = 0, v2=0;
+				SM::periodViolation(newTemp, this->maxPeriod, period1, &v1);
+				SM::periodViolation(newTemp, this->maxPeriod, period2, &v2);
+				Course c1 = crt.getCourse();
+				Course c2 = swapCRT.getCourse();
+				bool l = true;
+				number = rand_r(&seed)/(double)RAND_MAX;
+				if (v1 == 0 && v2 == 0 &&  l)
+				{
+					int nSCurrent = this->NumberSCV(newTemp);
+					if (nSCurrent < min)
+					{
+						//cout<<" best is swap "<<endl;
+						min = nSCurrent;
+						bestSchedule = newTemp;
+					}
+					if (nSCurrent == min && number > 0.5)
+					{
+						//cout<<" best is swap "<<endl;
+						min = nSCurrent;
+						bestSchedule = newTemp;
+					}
+
+
+				}
+
+				//swap room
+					newTemp = tempSchedule;
+				RoomTime newcrtRoomTime = crt.getVenueTime();
+				newcrtRoomTime.setRoom(swapCRT.getVenueTime().getRoom());
+				RoomTime newswapRoomTime = swapCRT.getVenueTime();
+				newcrtRoomTime.setRoom(crt.getVenueTime().getRoom());
+				newTemp[indexInTS].setVenueTime(newcrtRoomTime);
+				newTemp[swapIndex].setVenueTime(newswapRoomTime);
+
+				SM::periodViolation(newTemp, this->maxPeriod, period1, &v1);
+				SM::periodViolation(newTemp, this->maxPeriod, period2, &v2);
+				if (v1 == 0 && v2 == 0)
+				{
+					int nSCurrent = this->NumberSCV(newTemp);
+					if (nSCurrent < min)
+					{
+						//cout<<" best is swap "<<endl;
+						min = nSCurrent;
+						bestSchedule = newTemp;
+					}
+
+				}
+
+				//swap time
+				newTemp = tempSchedule;
+				RoomTime roomtime_crt = crt.getVenueTime();
+				roomtime_crt.setPeriod(period1);
+				RoomTime roomtime_swap = swapCRT.getVenueTime();
+				roomtime_swap.setPeriod(period2);
+				newTemp[indexInTS].setVenueTime(roomtime_crt);
+				newTemp[swapIndex].setVenueTime(roomtime_swap);
+				SM::periodViolation(newTemp, this->maxPeriod, period1, &v1);
+				SM::periodViolation(newTemp, this->maxPeriod, period2, &v2);
+				if (v1 == 0 && v2 == 0)
+				{
+					int nSCurrent = this->NumberSCV(newTemp);
+					if (nSCurrent < min)
+					{
+						//cout<<" best is swap "<<endl;
+						min = nSCurrent;
+						bestSchedule = newTemp;
+					}
+
+				}
+	
+
+			}
+		}
+
+		//move to new rt
+		for (std::size_t i =0; i < this->venueTime.size(); i++)
+		{
+			auto eventP = this->venueTime[i];
+			//bool l = true;
+			//if (crt.getVenueTime() == eventP && accept == false)
+				//l = false;
+			//else
+				//l = true;
+			if (eventP.canAssignCourse(crt.getCourse()) && crt.getVenueTime() != eventP )
+			{
+				newTemp = tempSchedule;
+				newTemp[indexInTS].setVenueTime(eventP);
+				//check number of hard constraint violations in newTimetable CRT
+				int violations = 0;
+				SM::periodViolation(newTemp, this->maxPeriod, eventP.getPeriod(), &violations);
+				if (violations == 0)
+				{
+					int nSCurrent = this->NumberSCV(newTemp);
+					if (nSCurrent < min)
+					{
+						//moved = true;
+						min = nSCurrent;
+						bestSchedule = newTemp;
+					}
+					number = rand_r(&seed)/(double)RAND_MAX;
+					if (nSCurrent == min && number > 0.5)
+					{
+						//cout<<" best is swap "<<endl;
+						min = nSCurrent;
+						bestSchedule = newTemp;
+					}
+
+				}
+				else if ( violations > 0 && accept == true)
+				{
+
+					//cout<<"in violations more than zero"<<endl;
+					//to do ---- check if it's a single CRT Violation and return it for next move
+					auto clashList = this->getClashList(newTemp, newTemp[indexInTS]);
+					//check if single clash
+					/*
+					cout<<clashList.size()<<endl;
+					for (auto &clasL:clashList)
+					{
+						cout<<clasL.toString()<<" ";
+					}
+					cout<<endl;
+					*/
+					if (clashList.size() == 1)
+					{
+						//cout<<"clash size equal to 1"<<endl;
+						auto copyNewTemp = newTemp;
+						auto findCourse = std::find(copyNewTemp.begin(), copyNewTemp.end(), clashList[0]);
+						auto cIndex = std::distance(copyNewTemp.begin(), findCourse);
+						auto newC = this->moveToBest2(cIndex, &copyNewTemp);
+						if (newC.empty == true)
+						{
+							//cout<<" Safely swapped "<<endl;
+							int nSCurrent = this->NumberSCV(copyNewTemp);
+							//int nSCurrent = this->NumberSCV(newTemp);
+							if (nSCurrent < min)
+							{
+								min = nSCurrent;
+								bestSchedule = copyNewTemp;
+							}
+
+						}
+					}
+
+				}
+
+			}
+		}
+		/*
+		if (!moved)
+			cout<<" Best is swap"<<endl;
+		else
+			cout<<" Best is move"<<endl;
+		*/
+		return bestSchedule;
+	}
+	return timetable;
+	
+}

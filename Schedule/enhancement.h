@@ -64,6 +64,7 @@ private:
 	vector<CourseRoomTime> getClashList(const vector<CourseRoomTime>&, const CourseRoomTime&);
 	vector<CourseRoomTime> antColonySoftThread(const int& numberAnts, const int& numberCycles, const int& num_ber, bool accept, vector<CourseRoomTime>* runSchedule);
 	void evaporate();
+	vector<CourseRoomTime> seqMoveToBest(int crtIndex, vector<CourseRoomTime> &timetable, bool accept );
 
 
 public:
@@ -75,6 +76,7 @@ public:
 	int NumberSCV(const vector<CourseRoomTime>& timetable);
 	vector<CourseRoomTime> antColonySoft(const int& numberAnts, const int& numberCycles, const int& num_ber, bool accept, vector<CourseRoomTime>* runSchedule);
 	vector<CourseRoomTime> runEnhancement(int, int, int);
+	vector<CourseRoomTime> applyEnhancementSequence(vector<int> &seq, vector<CourseRoomTime>& timetable,  bool accept);
 
 };
 
