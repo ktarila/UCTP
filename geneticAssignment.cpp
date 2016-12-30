@@ -31,6 +31,7 @@ using namespace std;
 
 long evaluation_count=0;  /* Number of fitness evaluations performed. */
 int scale = 1000000; /* Linear scale fitness value */
+boolean accept; 
 vector<CourseRoomTime> applyAllele(const int &allele,
                                    const vector<CourseRoomTime> &oldSchedule) {
   int fSize = SM::iT.getFeasibleTable().size();
@@ -66,6 +67,56 @@ vector<CourseRoomTime> applyAllele(const int &allele,
   return oldSchedule;
 }
 
+/**********************************************************************
+  explode()
+  synopsis: Explode a string.
+  parameters:
+  return:
+  updated:  20 Sep 2004
+ **********************************************************************/
+vector<string> explode(const string& str, const char& ch) {
+    string next;
+    vector<string> result;
+
+    // For each character in the string
+    for (string::const_iterator it = str.begin(); it != str.end(); it++) {
+        // If we've hit the terminal character
+        if (*it == ch) {
+            // If we have some characters accumulated
+            if (!next.empty()) {
+                // Add them to the result vector
+                result.push_back(next);
+                next.clear();
+            }
+        } else {
+            // Accumulate the next character into the sequence
+            next += *it;
+        }
+    }
+    if (!next.empty())
+         result.push_back(next);
+    return result;
+}
+
+/**********************************************************************
+  applyChromosome()
+  synopsis: The resulting timetabling schedule when chromosome is applied.
+  parameters:
+  return:
+  updated:  20 Sep 2004
+ **********************************************************************/
+static vector<CourseRoomTime> applyChromosome(std::vector<string> bestChromosome) {
+  vector<CourseRoomTime> tSchedule = SM::iT.getFeasibleTable();
+  std::vector<int> sequence;
+
+  for (size_t i = 0; i < bestChromosome.size(); i++) {
+    //std::cout << "\"" << bestChromosome[i] << "\"" << endl;
+    sequence.push_back(std::stoi( bestChromosome[i] ));
+  }
+  auto tempSchedule  = SM::enhance.applyEnhancementSequence(sequence, tSchedule, accept);
+  return tempSchedule;
+}
+
 
 /**********************************************************************
   softconstraint_score()
@@ -82,18 +133,22 @@ static boolean softconstraint_score(population *pop, entity *entity) {
   //double lSum = 10.0;
   vector<CourseRoomTime> tSchedule = SM::iT.getFeasibleTable();
   vector<CourseRoomTime> tempSchedule;
+  std::vector<int> sequence;
 
   /* Loop over alleles in chromosome. */
   for (k = 0; k < pop->len_chromosomes; k++)
-    {
+  {
     int allele = ((int *)entity->chromosome[0])[k];
+    sequence.push_back(allele);
     //entity->fitness += (5-allele)*(5-allele);
     //tempSchedule = applyAllele(allele, tSchedule);
-    tempSchedule = SM::iiT.bestNeighbour(allele, tSchedule);
-    tSchedule = tempSchedule;
-    }
+    //tempSchedule = SM::iiT.bestNeighbour(allele, tSchedule);
+    //tSchedule = tempSchedule;
+  }
 
-  auto quality = (double) SM::iiT.NumberSCV(tSchedule);
+  tempSchedule  = SM::enhance.applyEnhancementSequence(sequence, tSchedule, accept);
+
+  auto quality = (double) SM::iiT.NumberSCV(tempSchedule);
   entity->fitness = quality;
 
 /* Normalize fitness so smaller positive values are better. */
@@ -103,6 +158,7 @@ static boolean softconstraint_score(population *pop, entity *entity) {
   entity->fitness = scale * entity->fitness;
 
   evaluation_count++;
+  printf("Evaluation number = %ld is concluded with quality %f \n", evaluation_count, quality);
   return TRUE;
 
   
@@ -180,8 +236,8 @@ static boolean struggle_generation_hook(int generation, population *pop)
  **********************************************************************/
 
 int main(int argc, char **argv) {
-  const char *filename = "InputData/ITC-2007_ectt/comp01.ectt";
-  const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp01.sol";
+  const char *filename = "InputData/ITC-2007_ectt/comp11.ectt";
+  const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp11.sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   Data *data = new Data(filename);
 
@@ -208,10 +264,10 @@ int main(int argc, char **argv) {
   cout << "Construction ...." << endl;
   double wall0 =  SM::get_wall_time();
   double cpu0  = SM::get_cpu_time();
-  ft.antColonyThread(1, 1);
-  auto fromOld = readCRT(data->getCourses(), data->getRooms(),
-                         data->getNumPeriodsPerDay(), solfilename);
-  ft.setFeasibleTable(fromOld);
+  ft.antColonyThread(8, 500);
+  //auto fromOld = readCRT(data->getCourses(), data->getRooms(),
+  //                       data->getNumPeriodsPerDay(), solfilename);
+  //ft.setFeasibleTable(fromOld);
   double wall6 = SM::get_wall_time();
   double cpu6 = SM::get_cpu_time();
   std::cout << endl
@@ -224,7 +280,7 @@ int main(int argc, char **argv) {
   // improve timetable static constant
   //auto timet = ite.runImprovement(2, 1, 1);
   //ft.setFeasibleTable(timet);
-  //auto fromOld = ft.getFeasibleTable();
+  auto fromOld = ft.getFeasibleTable();
   cout << " Timetable of size: " << fromOld.size() << " has " << ft.NumberHCV()
        << " number of hard constraint violations and " << ite.NumberSCV(fromOld)
        << " soft constraint violations " << endl;
@@ -239,34 +295,44 @@ int main(int argc, char **argv) {
    SM::iT = ft;
    SM::iiT = ite;
 
+   Enhancement en(ft); //constructor
+   SM::enhance = en;
+
 
   /*
   *  Improve on soft constraints using genetic algorithms
   */
-  cout << endl << endl << "Improvement Phase..." << endl;
+  
+  for (int i = 0; i < 2; i++) {
+    cout << endl << endl << "Improvement Phase: Iteration:  " << i << endl;
+    if (i%2 == 0){
+       accept = true;
+    }else {
+      accept = false;
+    }
+    population* pop = NULL;  /* Population of solutions. */
+    char* beststring = NULL; /* Human readable form of best solution. */
+    size_t beststrlen = 0;   /* Length of beststring. */
 
+    random_seed(20092004);
+    // int max = (SM::iT.getFeasibleTable().size() *
+    //           (SM::iT.getFeasibleTable().size() + SM::iiT.getMaxPeriod() +
+    //           1)) -
+    //          1;
 
-  population *pop = NULL;  /* Population of solutions. */
-  char *beststring = NULL; /* Human readable form of best solution. */
-  size_t beststrlen = 0;   /* Length of beststring. */
+    int max = fromOld.size() - 1;
+    //int max = 3;
+    // int chromLength = fromOld.size();
+    cout << "Maximum: " << max << endl;
 
-  random_seed(20092004);
-  //int max = (SM::iT.getFeasibleTable().size() *
-  //           (SM::iT.getFeasibleTable().size() + SM::iiT.getMaxPeriod() + 1)) -
-  //          1;
-
-  int max = fromOld.size() - 1; 
-  //int chromLength = fromOld.size();
-  cout<<"Maximum: "<< max<<endl;
-
-  //int max = 10;
-  pop = ga_genesis_integer(
-      100,                    /* const int              population_size */
-      1,                      /* const int              num_chromo */
-      30,                    /* const int              len_chromo */
-      struggle_generation_hook,                   /* GAgeneration_hook      generation_hook */
-      NULL,                   /* GAiteration_hook       iteration_hook */
-      NULL,                   /* GAdata_destructor      data_destructor */
+    // int max = 10;
+    pop = ga_genesis_integer(
+      2,                       /* const int              population_size */
+      1,                        /* const int              num_chromo */
+      3,                      /* const int              len_chromo */
+      struggle_generation_hook, /* GAgeneration_hook      generation_hook */
+      NULL,                     /* GAiteration_hook       iteration_hook */
+      NULL,                     /* GAdata_destructor      data_destructor */
       NULL,                   /* GAdata_ref_incrementor data_ref_incrementor */
       softconstraint_score,   /* GAevaluate             evaluate */
       ga_seed_integer_random, /* GAseed                 seed */
@@ -279,10 +345,10 @@ int main(int argc, char **argv) {
       NULL                               /* vpointer    User data */
       );
 
-  ga_population_set_allele_min_integer(pop, 0);
-  ga_population_set_allele_max_integer(pop, max);
+    ga_population_set_allele_min_integer(pop, 0);
+    ga_population_set_allele_max_integer(pop, max);
 
-  ga_population_set_parameters(
+    ga_population_set_parameters(
       pop,                        /* population      *pop */
       GA_SCHEME_DARWIN,           /* const ga_scheme_type  scheme */
       GA_ELITISM_PARENTS_SURVIVE, /* const ga_elitism_type   elitism */
@@ -291,22 +357,33 @@ int main(int argc, char **argv) {
       0.0                         /* double    migration */
       );
 
-  ga_evolution(pop, /* population              *pop */
-               250  /* const int               max_generations */
-               );
+    ga_evolution(pop, /* population              *pop */
+                 1   /* const int               max_generations */
+                 );
 
-  /* Display final solution. */
-  printf("The final solution was:\n");
-  beststring = ga_chromosome_integer_to_string(
+    /* Display final solution. */
+    //printf("The final solution was:\n");
+    beststring = ga_chromosome_integer_to_string(
       pop, ga_get_entity_from_rank(pop, 0), beststring, &beststrlen);
-  printf("%s\n", beststring);
-  printf("With score = %f\n", ga_get_entity_from_rank(pop, 0)->fitness);
-  double eval = (1 - ga_get_entity_from_rank(pop,0)->fitness)/ga_get_entity_from_rank(pop,0)->fitness;
-  printf("And evaluation quality = %f\n", eval/scale);
+    /*printf("%s\n", beststring);
+    printf("With score = %f\n", ga_get_entity_from_rank(pop, 0)->fitness);
+    double eval = (1 - ga_get_entity_from_rank(pop, 0)->fitness) /
+                  ga_get_entity_from_rank(pop, 0)->fitness;
+    printf("And evaluation quality = %f\n", eval / scale);*/
 
-  /* Free memory. */
-  ga_extinction(pop);
-  s_free(beststring);
+    std::vector<std::string> result = explode(beststring, ' ');
+    auto currentSchedule = applyChromosome(result);
+    SM::iT.setFeasibleTable(currentSchedule);
+    SM::enhance = SM::iT;
 
-  exit(EXIT_SUCCESS);
+    cout << " Timetable of size: " << currentSchedule.size() << " has " << SM::iT.NumberHCV()
+       << " number of hard constraint violations and " << ite.NumberSCV(SM::iT.getFeasibleTable())
+       << " soft constraint violations " << endl;
+
+    /* Free memory. */
+    ga_extinction(pop);
+    s_free(beststring);
+
+    exit(EXIT_SUCCESS);
+  }
 }

@@ -60,7 +60,7 @@ roompath.o:  ./Schedule/roompath.cpp ./Schedule/roompath.h ./Schedule/courseroom
 	$(CXX) $(CXXFLAGS) -c ./Schedule/roompath.cpp
 
 # To create the object file path:
-smethods.o:  ./Schedule/smethods.cpp ./Schedule/smethods.h ./Schedule/courseroomtime.h ./Schedule/feasibletable.h  ./Schedule/improvetable.h
+smethods.o:  ./Schedule/smethods.cpp ./Schedule/smethods.h ./Schedule/courseroomtime.h ./Schedule/feasibletable.h  ./Schedule/improvetable.h ./Schedule/enhancement.h
 	$(CXX) $(CXXFLAGS) -c ./Schedule/smethods.cpp
 
 # To create the object file improvetable:

@@ -4,6 +4,30 @@
 		"selected_items":
 		[
 			[
+				"en",
+				"enhance"
+			],
+			[
+				"best",
+				"bestSchedule"
+			],
+			[
+				"time",
+				"timetable"
+			],
+			[
+				"ne",
+				"nextCRT"
+			],
+			[
+				"new",
+				"newT"
+			],
+			[
+				"se",
+				"setFeasibleTable"
+			],
+			[
 				"le",
 				"length"
 			],
@@ -100,10 +124,6 @@
 				"periods_per_day"
 			],
 			[
-				"best",
-				"bestSCV"
-			],
-			[
 				"temp",
 				"tempSchedule"
 			],
@@ -118,10 +138,6 @@
 			[
 				"swap",
 				"swapRoom"
-			],
-			[
-				"new",
-				"newFRT"
 			],
 			[
 				"set",
@@ -284,10 +300,6 @@
 				"trailFactor"
 			],
 			[
-				"time",
-				"timetable"
-			],
-			[
 				"sl",
 				"slResult"
 			],
@@ -362,10 +374,6 @@
 			[
 				"pu",
 				"push_back"
-			],
-			[
-				"en",
-				"endl"
 			],
 			[
 				"fo",
@@ -447,7 +455,7 @@
 			"file": "Timetable.cpp",
 			"settings":
 			{
-				"buffer_size": 6903,
+				"buffer_size": 6995,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -465,7 +473,17 @@
 			"file": "Schedule/enhancement.cpp",
 			"settings":
 			{
-				"buffer_size": 31103,
+				"buffer_size": 37177,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Schedule/enhancement.h",
+			"settings":
+			{
+				"buffer_size": 3108,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -473,7 +491,26 @@
 			"file": "geneticAssignment.cpp",
 			"settings":
 			{
-				"buffer_size": 11320,
+				"buffer_size": 11628,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Schedule/smethods.cpp",
+			"settings":
+			{
+				"buffer_size": 12077,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Schedule/smethods.h",
+			"settings":
+			{
+				"buffer_size": 1443,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -763,13 +800,12 @@
 	},
 	"expanded_folders":
 	[
-		"/home/patrick/work/UCTP-CPP",
-		"/home/patrick/work/UCTP-CPP/Schedule"
+		"/home/patrick/work/UCTP-CPP"
 	],
 	"file_history":
 	[
-		"/home/patrick/work/UCTP-CPP/Schedule/improvetable.cpp.bk",
 		"/home/patrick/work/UCTP-CPP/makefile",
+		"/home/patrick/work/UCTP-CPP/Schedule/improvetable.cpp.bk",
 		"/home/patrick/work/UCTP-CPP/Schedule/path.cpp",
 		"/home/patrick/work/UCTP-CPP/Schedule/feasibletable.cpp",
 		"/home/patrick/work/UCTP-CPP/Schedule/feasibletable.h",
@@ -985,7 +1021,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 4,
 			"sheets":
 			[
 				{
@@ -994,15 +1030,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6903,
+						"buffer_size": 6995,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3809,
-								3809
+								3551,
+								3551
 							]
 						],
 						"settings":
@@ -1012,10 +1048,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1207.0,
+						"translation.y": 1801.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1044,7 +1080,7 @@
 						"translation.y": 21889.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1053,15 +1089,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 31103,
+						"buffer_size": 37177,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11327,
-								11337
+								31137,
+								31137
 							]
 						],
 						"settings":
@@ -1070,27 +1106,56 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 6648.0,
+						"translation.y": 20304.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "geneticAssignment.cpp",
+					"file": "Schedule/enhancement.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 11320,
+						"buffer_size": 3108,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8038,
-								8038
+								2290,
+								2290
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 162.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "geneticAssignment.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 11628,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3506,
+								3506
 							]
 						],
 						"settings":
@@ -1100,14 +1165,72 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3618.0,
+						"translation.y": 2005.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
+					"file": "Schedule/smethods.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 12077,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12027,
+								12027
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6870.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "Schedule/smethods.h",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1411,
+								1411
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 486.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "Schedule/improvetable.h",
 					"semi_transient": false,
 					"settings":
@@ -1132,7 +1255,7 @@
 						"translation.y": 757.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 7,
 					"type": "text"
 				}
 			]

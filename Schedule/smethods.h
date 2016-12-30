@@ -18,6 +18,7 @@
 #include "courseroomtime.h"
 #include "feasibletable.h"
 #include "improvetable.h"
+#include "enhancement.h"
 
 
 class SM {
@@ -43,6 +44,7 @@ public:
 	vector<string> static curriculumInTimetable(const vector<CourseRoomTime>& timetable);
 	static FeasibleTable iT;
 	static ImproveTable iiT;
+	static Enhancement enhance;
 };
 
 

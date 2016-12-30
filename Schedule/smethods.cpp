@@ -399,6 +399,7 @@ int SM::ThreadNumberHCV(const vector<CourseRoomTime>& timetable,const  int& maxi
 
 FeasibleTable SM::iT;
 ImproveTable SM::iiT;
+Enhancement  SM::enhance;
 int SM::numPeriods = 0;
 int SM::sizeTable = 0;
 
