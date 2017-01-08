@@ -21,6 +21,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <time.h> 
 
 extern "C" {
 #include "gaul.h"
@@ -236,8 +237,8 @@ static boolean struggle_generation_hook(int generation, population *pop)
  **********************************************************************/
 
 int main(int argc, char **argv) {
-  const char *filename = "InputData/ITC-2007_ectt/comp11.ectt";
-  const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp11.sol";
+  const char *filename = "InputData/ITC-2007_ectt/comp12.ectt";
+  const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp12.sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   Data *data = new Data(filename);
 
@@ -264,10 +265,10 @@ int main(int argc, char **argv) {
   cout << "Construction ...." << endl;
   double wall0 =  SM::get_wall_time();
   double cpu0  = SM::get_cpu_time();
-  ft.antColonyThread(8, 500);
-  //auto fromOld = readCRT(data->getCourses(), data->getRooms(),
-  //                       data->getNumPeriodsPerDay(), solfilename);
-  //ft.setFeasibleTable(fromOld);
+  ft.antColonyThread(1, 1);
+  auto fromOld = readCRT(data->getCourses(), data->getRooms(),
+                         data->getNumPeriodsPerDay(), solfilename);
+  ft.setFeasibleTable(fromOld);
   double wall6 = SM::get_wall_time();
   double cpu6 = SM::get_cpu_time();
   std::cout << endl
@@ -280,7 +281,7 @@ int main(int argc, char **argv) {
   // improve timetable static constant
   //auto timet = ite.runImprovement(2, 1, 1);
   //ft.setFeasibleTable(timet);
-  auto fromOld = ft.getFeasibleTable();
+  //auto fromOld = ft.getFeasibleTable();
   cout << " Timetable of size: " << fromOld.size() << " has " << ft.NumberHCV()
        << " number of hard constraint violations and " << ite.NumberSCV(fromOld)
        << " soft constraint violations " << endl;
@@ -303,7 +304,7 @@ int main(int argc, char **argv) {
   *  Improve on soft constraints using genetic algorithms
   */
   
-  for (int i = 0; i < 2; i++) {
+  for (int i = 0; i < 20; i++) {
     cout << endl << endl << "Improvement Phase: Iteration:  " << i << endl;
     if (i%2 == 0){
        accept = true;
@@ -314,7 +315,8 @@ int main(int argc, char **argv) {
     char* beststring = NULL; /* Human readable form of best solution. */
     size_t beststrlen = 0;   /* Length of beststring. */
 
-    random_seed(20092004);
+    int randSeed = time(NULL);
+    random_seed(randSeed);
     // int max = (SM::iT.getFeasibleTable().size() *
     //           (SM::iT.getFeasibleTable().size() + SM::iiT.getMaxPeriod() +
     //           1)) -
@@ -327,9 +329,9 @@ int main(int argc, char **argv) {
 
     // int max = 10;
     pop = ga_genesis_integer(
-      2,                       /* const int              population_size */
+      5,                       /* const int              population_size */
       1,                        /* const int              num_chromo */
-      3,                      /* const int              len_chromo */
+      max,                      /* const int              len_chromo */
       struggle_generation_hook, /* GAgeneration_hook      generation_hook */
       NULL,                     /* GAiteration_hook       iteration_hook */
       NULL,                     /* GAdata_destructor      data_destructor */
@@ -337,8 +339,8 @@ int main(int argc, char **argv) {
       softconstraint_score,   /* GAevaluate             evaluate */
       ga_seed_integer_random, /* GAseed                 seed */
       NULL,                   /* GAadapt                adapt */
-      ga_select_one_sus,      /* GAselect_one           select_one */
-      ga_select_two_sus,      /* GAselect_two           select_two */
+      ga_select_one_roulette,      /* GAselect_one           select_one */
+      ga_select_two_roulette,      /* GAselect_two           select_two */
       ga_mutate_integer_singlepoint_drift, /* GAmutate               mutate */
       ga_crossover_integer_singlepoints, /* GAcrossover            crossover */
       NULL,                              /* GAreplace   replace */
@@ -358,7 +360,7 @@ int main(int argc, char **argv) {
       );
 
     ga_evolution(pop, /* population              *pop */
-                 1   /* const int               max_generations */
+                 0   /* const int               max_generations */
                  );
 
     /* Display final solution. */
@@ -383,7 +385,6 @@ int main(int argc, char **argv) {
     /* Free memory. */
     ga_extinction(pop);
     s_free(beststring);
-
-    exit(EXIT_SUCCESS);
   }
+  exit(EXIT_SUCCESS);
 }
