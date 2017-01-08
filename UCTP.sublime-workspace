@@ -471,8 +471,24 @@
 			"file": "geneticAssignment.cpp",
 			"settings":
 			{
-				"buffer_size": 14099,
+				"buffer_size": 14096,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Schedule/enhancement.cpp",
+			"settings":
+			{
+				"buffer_size": 37177,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Schedule/improvetable.cpp",
+			"settings":
+			{
+				"buffer_size": 46003,
 				"line_ending": "Unix"
 			}
 		}
@@ -988,15 +1004,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 14099,
+						"buffer_size": 14096,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10444,
-								10444
+								14095,
+								14095
 							]
 						],
 						"settings":
@@ -1006,10 +1022,69 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 5304.0,
+						"translation.y": 6763.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Schedule/enhancement.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 37177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								24779,
+								24779
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 18180.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Schedule/improvetable.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 46003,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								39974,
+								39999
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++ Starting Kit/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 18445.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

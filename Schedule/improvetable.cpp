@@ -1413,6 +1413,7 @@ ImproveTable::bestNeighbour(int crtOneIndex, vector<CourseRoomTime> schedule)
 {
   auto best = schedule;
   auto b_scv = this->NumberSCV(schedule);
+  //cout<<"best neighbour computation"<<endl;
   // int best_index = 0;
   for (std::size_t i = 0; i < schedule.size(); i++) {
     if ((int)i != crtOneIndex) {
@@ -1436,4 +1437,21 @@ ImproveTable::bestNeighbour(int crtOneIndex, vector<CourseRoomTime> schedule)
   }
   // cout<<"Best Index is "<<best_index<<endl;
   return best;
+}
+
+vector<CourseRoomTime> ImproveTable::applyImprovementSequence(vector<int> &seq, vector<CourseRoomTime>& timetable)
+{
+  vector<int> sequence(timetable.size());
+  auto schedule = timetable;
+  for (std::size_t i = 0; i < seq.size(); i++ ){
+    int nextCRT = seq[i];
+
+    //CRT is not out of bounds
+    if (nextCRT <= (int)timetable.size()){
+      auto tempSchedule = this->bestNeighbour(nextCRT, schedule);
+      schedule = tempSchedule;
+    }
+
+  }
+  return schedule;
 }

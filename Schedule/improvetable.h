@@ -134,6 +134,7 @@ public:
                                     vector<CourseRoomTime> schedule);
   vector<CourseRoomTime> bestNeighbour(int crtOneIndex,
                                        vector<CourseRoomTime> schedule);
+  vector<CourseRoomTime> applyImprovementSequence(vector<int> &seq, vector<CourseRoomTime>& timetable);
 };
 
 #endif /* IMPROVETABLE_H_ */

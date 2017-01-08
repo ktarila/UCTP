@@ -114,8 +114,15 @@ static vector<CourseRoomTime> applyChromosome(std::vector<string> bestChromosome
     //std::cout << "\"" << bestChromosome[i] << "\"" << endl;
     sequence.push_back(std::stoi( bestChromosome[i] ));
   }
-  auto tempSchedule  = SM::enhance.applyEnhancementSequence(sequence, tSchedule, accept);
-  return tempSchedule;
+
+  if (accept == TRUE)
+  {
+    auto tempSchedule  = SM::enhance.applyEnhancementSequence(sequence, tSchedule, FALSE);
+    return tempSchedule;
+  } else {
+    auto tempSchedule  = SM::iiT.applyImprovementSequence(sequence, tSchedule);
+    return tempSchedule;
+  }
 }
 
 
@@ -147,7 +154,13 @@ static boolean softconstraint_score(population *pop, entity *entity) {
     //tSchedule = tempSchedule;
   }
 
-  tempSchedule  = SM::enhance.applyEnhancementSequence(sequence, tSchedule, accept);
+  if (accept == TRUE)
+  {
+    tempSchedule  = SM::enhance.applyEnhancementSequence(sequence, tSchedule, FALSE);
+  } else {
+    tempSchedule  = SM::iiT.applyImprovementSequence(sequence, tSchedule);
+  }
+  
 
   auto quality = (double) SM::iiT.NumberSCV(tempSchedule);
   entity->fitness = quality;
@@ -304,12 +317,12 @@ int main(int argc, char **argv) {
   *  Improve on soft constraints using genetic algorithms
   */
   
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < 3; i++) {
     cout << endl << endl << "Improvement Phase: Iteration:  " << i << endl;
     if (i%2 == 0){
-       accept = true;
+       accept = TRUE;  //apply enhancement sequence
     }else {
-      accept = false;
+      accept = FALSE;  //apply improvement sequence
     }
     population* pop = NULL;  /* Population of solutions. */
     char* beststring = NULL; /* Human readable form of best solution. */
@@ -331,7 +344,7 @@ int main(int argc, char **argv) {
     pop = ga_genesis_integer(
       5,                       /* const int              population_size */
       1,                        /* const int              num_chromo */
-      max,                      /* const int              len_chromo */
+      1,                      /* const int              len_chromo */
       struggle_generation_hook, /* GAgeneration_hook      generation_hook */
       NULL,                     /* GAiteration_hook       iteration_hook */
       NULL,                     /* GAdata_destructor      data_destructor */
@@ -375,7 +388,8 @@ int main(int argc, char **argv) {
 
     std::vector<std::string> result = explode(beststring, ' ');
     auto currentSchedule = applyChromosome(result);
-    SM::iT.setFeasibleTable(currentSchedule);
+    SM::iT.setFeasibleTable(currentSchedule);  //overide feasible table
+    //SM::iiT.setFullSchedule(currentSchedule);  //overide feasible table in improve table class
     SM::enhance = SM::iT;
 
     cout << " Timetable of size: " << currentSchedule.size() << " has " << SM::iT.NumberHCV()
