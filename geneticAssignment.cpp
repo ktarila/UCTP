@@ -250,8 +250,8 @@ static boolean struggle_generation_hook(int generation, population *pop)
  **********************************************************************/
 
 int main(int argc, char **argv) {
-  const char *filename = "InputData/ITC-2007_ectt/comp12.ectt";
-  const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp12.sol";
+  const char *filename = "InputData/ITC-2007_ectt/comp08.ectt";
+  const char *solfilename = "/home/patrick/work/UCTP-CPP/Results/comp08.sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   Data *data = new Data(filename);
 
@@ -317,7 +317,7 @@ int main(int argc, char **argv) {
   *  Improve on soft constraints using genetic algorithms
   */
   
-  for (int i = 0; i < 3; i++) {
+  for (int i = 0; i < 20; i++) {
     cout << endl << endl << "Improvement Phase: Iteration:  " << i << endl;
     if (i%2 == 0){
        accept = TRUE;  //apply enhancement sequence
@@ -342,9 +342,9 @@ int main(int argc, char **argv) {
 
     // int max = 10;
     pop = ga_genesis_integer(
-      5,                       /* const int              population_size */
+      4,                       /* const int              population_size */
       1,                        /* const int              num_chromo */
-      1,                      /* const int              len_chromo */
+      100,                      /* const int              len_chromo */
       struggle_generation_hook, /* GAgeneration_hook      generation_hook */
       NULL,                     /* GAiteration_hook       iteration_hook */
       NULL,                     /* GAdata_destructor      data_destructor */

@@ -12,7 +12,8 @@ using namespace std;
 
 int main() {
   srand(time(NULL));
-  const char* filename = "InputData/ITC-2007_ectt/comp11.ectt";
+  //const char* filename = "InputData/ITC-2007_ectt/comp01.ectt";
+  const char* filename = "/home/patrick/work/ndutoectt/timetable.ectt";
   //const char* solfilename = "/home/patrick/work/UCTP-CPP/Results/comp11.sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   Data* data = new Data(filename);
@@ -90,19 +91,20 @@ int main() {
 
   //auto newT = impTable.runImprovement(10, 3, 3);
   //enhance table by moves
-  Enhancement en(ft); //constructor
-  auto newT = en.runEnhancement(4, 3, 1);
-  ft.setFeasibleTable(newT);
+  // Enhancement en(ft); //constructor
+  // auto newT = en.runEnhancement(4, 3, 1);
+  // ft.setFeasibleTable(newT);
 
   //final improvement with kempe swaps
   ImproveTable impTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
                         ft.getCourse(), ft.getFeasibleTable(),
                         ft.getMaxPeriod(), ft.getPeriodsInDay());
-  newT = impTable.runImprovement(10, 3, 3);
+  // newT = impTable.runImprovement(10, 3, 3);
   //ft.setFeasibleTable(timet);
-  //auto newT = ft.getFeasibleTable();
+  auto newT = ft.getFeasibleTable();
   std::stringstream ss;
-  ss << "Solutions/" << data->getName();
+  // ss << "Solutions/" << data->getName();
+  ss << "/home/patrick/work/ndutoectt/" << data->getName();
   impTable.writeTimetableToFileSolutionFormat(ss.str(), newT);
 
   double wall6 = SM::get_wall_time();

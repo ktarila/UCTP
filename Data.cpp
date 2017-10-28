@@ -320,19 +320,18 @@ Data::Data(const char* filename){
 						std::vector<Venue>::iterator findRoom = std::find(rooms.begin(), rooms.end(), temp1);
 						if ( findCourse != courses.end() && findRoom != rooms.end())  //If course and room exists
 						{
-							//commenting out room constraints
-
-
-/*
+							// add room constraint -- only those rooms that fit
+							// comment out for ITC2007 experiment
+							// leave for NDU generation
+							Venue room = *findRoom;
 							Course c = *findCourse;
-							c.addRoomConstraint(rCode); //update room constraints
-							//courses.remove(*findCourse); //delete old course;
-							*findCourse = c; //update course
-							//courses.push_back(c);  //add updated course
-*/
-
-
-
+							if (room.getCapacity() >= c.getNumStudents())
+							{
+								c.addRoomConstraint(rCode); //update room constraints
+							    //courses.std::remove(*findCourse); //delete old course;
+							    *findCourse = c; //update course
+							    //courses.push_back(c);  //add updated course
+							}
 							count++; //increment number of room constraints added
 						}
 						else
@@ -433,7 +432,7 @@ void Data::addRoomSizeConstraints()
 			{
 				Venue v = *venueToken;
 				//c.addRoomConstraint(v.getName());
-				int roomCapacity = v.getCapacity() + 1000;
+				int roomCapacity = v.getCapacity() + 0;
 				//int roomCapacity = courseSize;
 				if (roomCapacity >= courseSize)
 					c.addRoomConstraint(v.getName());  //add those rooms that can fit student
