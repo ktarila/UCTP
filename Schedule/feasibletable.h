@@ -37,7 +37,7 @@ private:
 	constexpr static double t_max = 10;    //maximum pheromone value
 	constexpr static double alpha = 2;      //heuristic weight -- high Ants less sensitive to pheromone trail more sensitive to heuristics
 	constexpr static double beta = 8;       //trail weight     -- high means ants are less sensitive to heuristic more senstive to pheromone trail
-	constexpr static double rho = 0.05;        //rate of evapouration -- high means fast evapouration rate (range between 0 and 1);
+	constexpr static double rho = 0.01;        //rate of evapouration -- high means fast evapouration rate (range between 0 and 1);
 
 
 

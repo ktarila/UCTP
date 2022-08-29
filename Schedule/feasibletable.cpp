@@ -244,14 +244,14 @@ void FeasibleTable::antGraphWalk(vector<CourseRoomTime> *timetable, int cycle,
 
   // std::srand(rSeed);
   SM s;
-  std::random_shuffle(
-      copyCourse.begin(), copyCourse.end(),
-      myrandomF); // shuffle courses to select random to schedule
+  // std::random_shuffle(
+  //     copyCourse.begin(), copyCourse.end(),
+  //     myrandomF); // shuffle courses to select random to schedule
 
 
   // while not all courses have not been scheduled to a timetable
   // select a random course and schedule
-  // std::sort(copyCourse.begin(), copyCourse.end());
+  std::sort(copyCourse.begin(), copyCourse.end());
   std::vector<Course>::iterator copyCourseIterator = copyCourse.begin();
   while (copyCourseIterator != copyCourse.end()) {
     Course c = *copyCourseIterator;
@@ -432,9 +432,9 @@ RoomTime FeasibleTable::antCourseWalk(Course c, vector<RoomTime> tabuVenueTime,
         conViolate;
 
     double trailFactor = pow(trail, this->beta);
-    double heuristicFactor = pow(heuristic, this->alpha);
+    // double heuristicFactor = pow(heuristic, this->alpha);
     // double heuristicFactor = 0;
-    // double heuristicFactor = 0;
+    double heuristicFactor = 0;
     probability[i] = trailFactor + heuristicFactor;
   }
 
