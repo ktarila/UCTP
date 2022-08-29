@@ -363,7 +363,6 @@ RoomTime FeasibleTable::antCourseWalk(Course c, vector<RoomTime> tabuVenueTime,
       L3Filter, tabuDays); // try to meet minimum days constraint
   // cout << L4Filter.size() << " L4Filter" << endl;
 
-  // auto L4Filter = L3Filter;
 
   // set probabilities of edges
   double probability[L4Filter.size()];
@@ -432,9 +431,8 @@ RoomTime FeasibleTable::antCourseWalk(Course c, vector<RoomTime> tabuVenueTime,
         conViolate;
 
     double trailFactor = pow(trail, this->beta);
-    // double heuristicFactor = pow(heuristic, this->alpha);
+    double heuristicFactor = pow(heuristic, this->alpha);
     // double heuristicFactor = 0;
-    double heuristicFactor = 0;
     probability[i] = trailFactor + heuristicFactor;
   }
 
@@ -845,6 +843,9 @@ void FeasibleTable::updateAntTrail(int timetableQuality,
   double reward = 1 / (1 + (double)timetableQuality -
   (double)this->globalBest);
 
+  if (this->globalBest == timetableQuality)
+    reward = 0.9;
+
   if (this->globalBest > timetableQuality)
     reward = 1;
 
@@ -852,6 +853,11 @@ void FeasibleTable::updateAntTrail(int timetableQuality,
   // double reward =
   //     (1 / (1 + (double)timetableQuality - (double)this->globalBest)) - 1;
   // reward = reward / 10;
+
+  // if (this->globalBest == timetableQuality){
+  //   reward = 1;
+  // }
+
 
   // if (this->globalBest > timetableQuality)
   //   // reward = 1;

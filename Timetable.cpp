@@ -1,22 +1,41 @@
 // reading a text file
-#include <sstream>
-#include <string>
 #include "ReadCRT.h"
 #include "Schedule/enhancement.h"
 #include "Schedule/feasibletable.h"
 #include "Schedule/improvetable.h"
 #include "Schedule/smethods.h"
 #include "data.h"
+#include <cstdlib>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
   srand(time(NULL));
-  const char* filename = "InputData/ITC-2007_ectt/comp02.ectt";
+  int numAnts = 8;
+  int numGens = 1000;
+
+  if (argc != 4) { // argc should be 4 for correct execution
+    // We print argv[0] assuming it is the program name
+    cout << "usage: " << argv[0] << " <comp01> <number_of_ants> <number_of_iterations>\n";
+    return 0;
+  }
+  numAnts = atoi(argv[2]);
+  numGens = atoi(argv[3]);
+
+  std::stringstream filename;
+  filename << "InputData/ITC-2007_ectt/" <<argv[1] << ".ectt";
   // const char* filename = "/home/patrick/work/ndutoectt/timetable.ectt";
-  const char* solfilename = "/home/patrick/work/UCTP-CPP/Results/comp02.sol";
+  std::stringstream solfilenamestream;
+  solfilenamestream << "/home/patrick/work/UCTP-CPP/Results/" <<argv[1] <<".sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
-  Data* data = new Data(filename);
+  char* inputfilepath=new char[filename.str().length()+1];
+  filename >> inputfilepath;
+
+  char* solfilename=new char[solfilenamestream.str().length()+1];
+  solfilenamestream >> solfilename;
+  Data *data = new Data(inputfilepath);
 
   cout << "\nName: " << data->getName() << endl;
   cout << "Courses: " << data->getNumCourses() << endl;
@@ -43,11 +62,11 @@ int main() {
   cout << "Construction ...." << endl;
   // double wall0 = SM::get_wall_time();
   // double cpu0 = SM::get_cpu_time();
-  ft.antColonyThread(8, 1000);
+  ft.antColonyThread(numAnts, numGens);
 
   // ft.antColony(1, 1);
 
-  //auto fromOld = readCRT(data->getCourses(), data->getRooms(),
+  // auto fromOld = readCRT(data->getCourses(), data->getRooms(),
   //                       data->getNumPeriodsPerDay(), solfilename);
   // ft.setFeasibleTable(fromOld);
   // cout << " Timetable has " << ft.NumberHCV()
@@ -55,7 +74,6 @@ int main() {
 
   // cout << endl << endl << "Improvement Phase..." << endl;
 
-  
   // int max = ft.getFeasibleTable().size() - 1;
   // int min = 0;
   // int crtOneIndex = min + (rand() % (int)(max - min + 1));  //generate random
@@ -64,15 +82,15 @@ int main() {
   // number in range [min max]
   // cout<<"Index One: "<<crtOneIndex<<" Index Two: "<<crtTwoIndex<<endl;
   // auto timet = impTable.singleMove(10, 180, ft.getFeasibleTable());
-  //auto timet= fromOld;
+  // auto timet= fromOld;
   /*auto fromOld = ft.getFeasibleTable();
   for (int j =0; j < 10; j++)
   {
       for (size_t i =0; i < ft.getFeasibleTable().size(); i++)
       {
               cout<<"Iteration "<<i<<": ";
-              auto timet = impTable.bestNeighbour((int)i, ft.getFeasibleTable());
-              auto currentSCV = impTable.NumberSCV(timet);
+              auto timet = impTable.bestNeighbour((int)i,
+  ft.getFeasibleTable()); auto currentSCV = impTable.NumberSCV(timet);
               std::cout<< currentSCV<<" is the current SCV"<<endl;
               if (currentSCV < impTable.NumberSCV(fromOld))
               {
@@ -91,20 +109,22 @@ int main() {
   // auto timet = impTable.bestNeighbour(10, ft.getFeasibleTable());
   // auto newT = timet;
 
-  // 
-  //enhance table by moves
+  //
+  // enhance table by moves
   // Enhancement en(ft); //constructor
   // auto newT = en.runEnhancement(4, 3, 1);
   // ft.setFeasibleTable(newT);
 
-  //final improvement with kempe swaps
-  // ImproveTable impTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
+  // final improvement with kempe swaps
+  // ImproveTable impTable(ft.getVenueTime(), data->getRooms(),
+  // ft.getCurCodes(),
   //                       ft.getCourse(), ft.getFeasibleTable(),
   //                       ft.getMaxPeriod(), ft.getPeriodsInDay());
   // impTable.antColonySoft(8, 3, 3, true);
   // auto newT = impTable.runImprovement(10, 3, 3);
-  // auto newT = impTable.antColonySoftThread(8, 50, const int &num_ber, bool accept) runImprovement(10, 3, 3);
-  //ft.setFeasibleTable(timet);
+  // auto newT = impTable.antColonySoftThread(8, 50, const int &num_ber, bool
+  // accept) runImprovement(10, 3, 3);
+  // ft.setFeasibleTable(timet);
   // auto newT = ft.getFeasibleTable();
   // std::stringstream ss;
   // ss << "Solutions/" << data->getName();
@@ -124,7 +144,8 @@ int main() {
 
   // cout << endl
   //      << endl
-  //      << "***********************Improved Timetable2*****************" << endl;
+  //      << "***********************Improved Timetable2*****************" <<
+  //      endl;
   // cout << endl
   //      << endl
   //      << " New Timetable has " << ft.NumberHCV(newT)
@@ -140,8 +161,8 @@ int main() {
   //      << " Consecutive Lecture Violations: " << consecutiveLectureViolations
   //      << endl;
 
-  // cout << endl << "**************Old Timetable**********************" << endl;
-  // cout << " Timetable has " << ft.NumberHCV()
+  // cout << endl << "**************Old Timetable**********************" <<
+  // endl; cout << " Timetable has " << ft.NumberHCV()
   //      << " number of hard constraint violations" << endl;
   // cout << " Old Timetable has "
   //      << impTable.NumberSCV(ft.getFeasibleTable(), &roomStabilityViolations,
