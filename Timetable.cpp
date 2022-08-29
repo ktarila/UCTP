@@ -12,9 +12,9 @@ using namespace std;
 
 int main() {
   srand(time(NULL));
-  //const char* filename = "InputData/ITC-2007_ectt/comp01.ectt";
-  const char* filename = "/home/patrick/work/ndutoectt/timetable.ectt";
-  //const char* solfilename = "/home/patrick/work/UCTP-CPP/Results/comp11.sol";
+  const char* filename = "InputData/ITC-2007_ectt/comp02.ectt";
+  // const char* filename = "/home/patrick/work/ndutoectt/timetable.ectt";
+  const char* solfilename = "/home/patrick/work/UCTP-CPP/Results/comp02.sol";
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   Data* data = new Data(filename);
 
@@ -41,17 +41,19 @@ int main() {
   cout << endl << endl;
 
   cout << "Construction ...." << endl;
-  double wall0 = SM::get_wall_time();
-  double cpu0 = SM::get_cpu_time();
-  ft.antColonyThread(8, 100);
+  // double wall0 = SM::get_wall_time();
+  // double cpu0 = SM::get_cpu_time();
+  ft.antColonyThread(8, 1000);
+
+  // ft.antColony(1, 1);
 
   //auto fromOld = readCRT(data->getCourses(), data->getRooms(),
   //                       data->getNumPeriodsPerDay(), solfilename);
   // ft.setFeasibleTable(fromOld);
-  cout << " Timetable has " << ft.NumberHCV()
-       << " number of hard constraint violations" << endl;
+  // cout << " Timetable has " << ft.NumberHCV()
+  //      << " number of hard constraint violations" << endl;
 
-  cout << endl << endl << "Improvement Phase..." << endl;
+  // cout << endl << endl << "Improvement Phase..." << endl;
 
   
   // int max = ft.getFeasibleTable().size() - 1;
@@ -89,69 +91,71 @@ int main() {
   // auto timet = impTable.bestNeighbour(10, ft.getFeasibleTable());
   // auto newT = timet;
 
-  //auto newT = impTable.runImprovement(10, 3, 3);
+  // 
   //enhance table by moves
   // Enhancement en(ft); //constructor
   // auto newT = en.runEnhancement(4, 3, 1);
   // ft.setFeasibleTable(newT);
 
   //final improvement with kempe swaps
-  ImproveTable impTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
-                        ft.getCourse(), ft.getFeasibleTable(),
-                        ft.getMaxPeriod(), ft.getPeriodsInDay());
-  // newT = impTable.runImprovement(10, 3, 3);
+  // ImproveTable impTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
+  //                       ft.getCourse(), ft.getFeasibleTable(),
+  //                       ft.getMaxPeriod(), ft.getPeriodsInDay());
+  // impTable.antColonySoft(8, 3, 3, true);
+  // auto newT = impTable.runImprovement(10, 3, 3);
+  // auto newT = impTable.antColonySoftThread(8, 50, const int &num_ber, bool accept) runImprovement(10, 3, 3);
   //ft.setFeasibleTable(timet);
-  auto newT = ft.getFeasibleTable();
-  std::stringstream ss;
+  // auto newT = ft.getFeasibleTable();
+  // std::stringstream ss;
   // ss << "Solutions/" << data->getName();
-  ss << "/home/patrick/work/ndutoectt/" << data->getName();
-  impTable.writeTimetableToFileSolutionFormat(ss.str(), newT);
+  // ss << "/home/patrick/work/ndutoectt/" << data->getName();
+  // impTable.writeTimetableToFileSolutionFormat(solfilename, newT);
 
-  double wall6 = SM::get_wall_time();
-  double cpu6 = SM::get_cpu_time();
-  std::cout << endl
-            << "Full Timetable construction " << wall6 - wall0
-            << " wall seconds and " << cpu6 - cpu0 << " CPU seconds" << endl;
+  // double wall6 = SM::get_wall_time();
+  // double cpu6 = SM::get_cpu_time();
+  // std::cout << endl
+  //           << "Full Timetable construction " << wall6 - wall0
+  //           << " wall seconds and " << cpu6 - cpu0 << " CPU seconds" << endl;
 
-  int roomStabilityViolations = 0;
-  int courseWorkingDayViolations = 0;
-  int consecutiveLectureViolations = 0;
-  int sizeViolations = 0;
+  // int roomStabilityViolations = 0;
+  // int courseWorkingDayViolations = 0;
+  // int consecutiveLectureViolations = 0;
+  // int sizeViolations = 0;
 
-  cout << endl
-       << endl
-       << "***********************Improved Timetable2*****************" << endl;
-  cout << endl
-       << endl
-       << " New Timetable has " << ft.NumberHCV(newT)
-       << " number of hard constraint violations" << endl;
-  cout << " New Timetable has "
-       << impTable.NumberSCV(newT, &roomStabilityViolations,
-                             &courseWorkingDayViolations,
-                             &consecutiveLectureViolations, &sizeViolations)
-       << " number of soft constraint violations" << endl;
-  cout << "Room Size Violations: " << sizeViolations
-       << " Room Stability: " << roomStabilityViolations
-       << " Course Working Day Violations: " << courseWorkingDayViolations
-       << " Consecutive Lecture Violations: " << consecutiveLectureViolations
-       << endl;
+  // cout << endl
+  //      << endl
+  //      << "***********************Improved Timetable2*****************" << endl;
+  // cout << endl
+  //      << endl
+  //      << " New Timetable has " << ft.NumberHCV(newT)
+  //      << " number of hard constraint violations" << endl;
+  // cout << " New Timetable has "
+  //      << impTable.NumberSCV(newT, &roomStabilityViolations,
+  //                            &courseWorkingDayViolations,
+  //                            &consecutiveLectureViolations, &sizeViolations)
+  //      << " number of soft constraint violations" << endl;
+  // cout << "Room Size Violations: " << sizeViolations
+  //      << " Room Stability: " << roomStabilityViolations
+  //      << " Course Working Day Violations: " << courseWorkingDayViolations
+  //      << " Consecutive Lecture Violations: " << consecutiveLectureViolations
+  //      << endl;
 
-  cout << endl << "**************Old Timetable**********************" << endl;
-  cout << " Timetable has " << ft.NumberHCV()
-       << " number of hard constraint violations" << endl;
-  cout << " Old Timetable has "
-       << impTable.NumberSCV(ft.getFeasibleTable(), &roomStabilityViolations,
-                             &courseWorkingDayViolations,
-                             &consecutiveLectureViolations, &sizeViolations)
-       << " number of soft constraint violations" << endl;
-  cout << "Room Size Violations: " << sizeViolations
-       << " Room Stability: " << roomStabilityViolations
-       << " Course Working Day Violations: " << courseWorkingDayViolations
-       << " Consecutive Lecture Violations: " << consecutiveLectureViolations
-       << endl;
+  // cout << endl << "**************Old Timetable**********************" << endl;
+  // cout << " Timetable has " << ft.NumberHCV()
+  //      << " number of hard constraint violations" << endl;
+  // cout << " Old Timetable has "
+  //      << impTable.NumberSCV(ft.getFeasibleTable(), &roomStabilityViolations,
+  //                            &courseWorkingDayViolations,
+  //                            &consecutiveLectureViolations, &sizeViolations)
+  //      << " number of soft constraint violations" << endl;
+  // cout << "Room Size Violations: " << sizeViolations
+  //      << " Room Stability: " << roomStabilityViolations
+  //      << " Course Working Day Violations: " << courseWorkingDayViolations
+  //      << " Consecutive Lecture Violations: " << consecutiveLectureViolations
+  //      << endl;
 
-  cout << "Threaded HCV: " << SM::ThreadNumberHCV(newT, (maximumPeriod + 1));
-  impTable.writeTimetableToFile("ImproveTab.csv");
+  // cout << "Threaded HCV: " << SM::ThreadNumberHCV(newT, (maximumPeriod + 1));
+  // impTable.writeTimetableToFile("ImproveTab.csv");
 
   /*
   CourseRoomTime crt = impTable.voteOut(0, ft.getFeasibleTable());
@@ -167,7 +171,7 @@ int main() {
   constraint violations"<<endl;
   */
 
-  impTable.writeTimetableToFile2();
+  // impTable.writeTimetableToFile2();
 
   delete data;
   // cout<<"Maximum period is: "<<maximumPeriod;

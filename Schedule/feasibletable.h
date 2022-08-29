@@ -30,12 +30,13 @@ private:
 	bool check; //parameter that checks if CRT object should be updated or not
 	int globalBest;  // the best result so far, least number of HCV
 	vector<CourseRoomTime> feasibleTable;
+	vector<Course> lectureList;
 
 	//Ant colony optimizaton parameters
 	constexpr static double t_min = 0.01;    //minumum pheromone value
 	constexpr static double t_max = 10;    //maximum pheromone value
-	constexpr static double alpha = 8;      //heuristic weight -- high Ants less sensitive to pheromone trail more sensitive to heuristics
-	constexpr static double beta = 2;       //trail weight     -- high means ants are less sensitive to heuristic more senstive to pheromone trail
+	constexpr static double alpha = 2;      //heuristic weight -- high Ants less sensitive to pheromone trail more sensitive to heuristics
+	constexpr static double beta = 8;       //trail weight     -- high means ants are less sensitive to heuristic more senstive to pheromone trail
 	constexpr static double rho = 0.05;        //rate of evapouration -- high means fast evapouration rate (range between 0 and 1);
 
 
@@ -56,6 +57,7 @@ private:
 	string getVenueCourse(int period, Course c, vector<CourseRoomTime> timetable);
 	void updateAntTrail(int HCViolations, vector<CourseRoomTime> timetable);
 	void evapourate();
+	void setLectureList();
 
 
 public:
@@ -77,6 +79,7 @@ public:
 	vector<CourseRoomTime> getFeasibleTable() const;
 	void setFeasibleTable(vector<CourseRoomTime> timetable);
 	vector<Venue> rooms;
+	vector<Course> getLectureList() const;
 	//int static sizeTable;
 	//int static numPeriods;
 };

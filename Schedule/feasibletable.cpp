@@ -6,15 +6,16 @@
  */
 
 #include "feasibletable.h"
+#include "improvetable.h"
+#include "smethods.h"
+#include <algorithm>
+#include <fstream>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include <algorithm>
-#include <fstream>
 #include <thread>
-#include "improvetable.h"
-#include "smethods.h"
+#include <time.h>
+#include <vector>
 
 // random generator function:
 int myrandomF(int i) {
@@ -27,15 +28,16 @@ int myrandomF(int i) {
 
 FeasibleTable::FeasibleTable(vector<Course> course, vector<Venue> rooms,
                              int maxPeriod, int periods_in_day,
-                             vector<Curricula> curCodes) : course(course), periods_in_day(periods_in_day), rooms(rooms) {
+                             vector<Curricula> curCodes)
+    : course(course), periods_in_day(periods_in_day), rooms(rooms) {
   this->check = true;
-  //this->course = course;
+  // this->course = course;
   this->maxPeriod = maxPeriod + 1;
   // cout<<"Maximum Period is: "<<this->maxPeriod;
-  //this->periods_in_day = periods_in_day;
-  //this->rooms = rooms;
+  // this->periods_in_day = periods_in_day;
+  // this->rooms = rooms;
   this->createVenueTimeList(rooms);
-  this->globalBest = 5000000;  // set global best to very large number
+  this->globalBest = 5000000; // set global best to very large number
 
   // dynamic allocation of adjacent matrix
   this->adjacentMatrix.resize(this->course.size());
@@ -49,13 +51,43 @@ FeasibleTable::FeasibleTable(vector<Course> course, vector<Venue> rooms,
   // save curriculum codes to a vector
   vector<Curricula>::iterator cIterator = curCodes.begin();
   while (cIterator != curCodes.end()) {
-    Curricula* curri = &(*cIterator);
+    Curricula *curri = &(*cIterator);
     this->curCodes.push_back(curri->getCode());
     ++cIterator;
   }
+
+  // save lecture list
+  this->setLectureList();
+  cout<<lectureList.size();
 }
 
 FeasibleTable::~FeasibleTable() {}
+
+void FeasibleTable::setLectureList() {
+  // cout<<"Graph walk Iteration: "<<cycle<<" with num HCV ";
+  // vector<CourseRoomTime> crt;
+  std::vector<Course> listOfLectures;
+
+  // copy of course list
+  std::vector<Course>::iterator courseIterator = this->course.begin();
+  std::vector<Course> copyCourse;
+  while (courseIterator != this->course.end()) {
+    Course c = *courseIterator;
+    copyCourse.push_back(c);
+    ++courseIterator;
+  }
+
+  std::vector<Course>::iterator copyCourseIterator = copyCourse.begin();
+  while (copyCourseIterator != copyCourse.end()) {
+    Course c = *copyCourseIterator;
+    int numWeeklyLectures = c.getWeeklyLectures();
+    for (int i = 0; i < numWeeklyLectures; i++) {
+      listOfLectures.push_back(c);
+    }
+    ++copyCourseIterator;
+  }
+  this->lectureList = listOfLectures;
+}
 
 /**
  *
@@ -79,6 +111,8 @@ void FeasibleTable::createVenueTimeList(vector<Venue> rooms) {
 }
 
 vector<Course> FeasibleTable::getCourse() const { return course; }
+
+vector<Course> FeasibleTable::getLectureList() const { return lectureList; }
 
 vector<string> FeasibleTable::getCurCodes() const { return curCodes; }
 
@@ -119,13 +153,13 @@ void FeasibleTable::printRoomTime() {
 void FeasibleTable::initializeAdjacentMatrix() {
   // this->printRoomTime();
   int i = 0;
-  //int j = 0;
+  // int j = 0;
   std::vector<Course>::iterator courseIterator = this->course.begin();
   std::vector<RoomTime>::iterator roomTimeIterator;
 
   while (courseIterator != this->course.end()) {
-  	int j;
-    Course* c = &(*courseIterator);
+    int j;
+    Course *c = &(*courseIterator);
     vector<string> roomConstr = c->getRoomConstraint();
     vector<int> unAvailConstr = c->getUnavailableConstraint();
     roomTimeIterator = this->venueTime.begin();
@@ -180,12 +214,13 @@ void FeasibleTable::initializeAdjacentMatrix() {
   }
 }
 
+
 /**
  * A graph walk that constructs a timetable at the end of walk
  * Timetable may not be feasible
  */
-void FeasibleTable::antGraphWalk(vector<CourseRoomTime>* timetable, int cycle,
-                                 int* num_hcv, int* num_scv) {
+void FeasibleTable::antGraphWalk(vector<CourseRoomTime> *timetable, int cycle,
+                                 int *num_hcv, int *num_scv) {
   // cout<<"Graph walk Iteration: "<<cycle<<" with num HCV ";
   // vector<CourseRoomTime> crt;
   std::vector<RoomTime> tabuRoomTime;
@@ -194,9 +229,11 @@ void FeasibleTable::antGraphWalk(vector<CourseRoomTime>* timetable, int cycle,
   vector<string> lecturerPeriod[this->maxPeriod];
 
   // copy of course list
-  std::vector<Course>::iterator courseIterator = this->course.begin();
+
   std::vector<Course> copyCourse;
-  while (courseIterator != this->course.end()) {
+
+  std::vector<Course>::iterator courseIterator = this->lectureList.begin();
+  while (courseIterator != this->lectureList.end()) {
     Course c = *courseIterator;
     copyCourse.push_back(c);
     ++courseIterator;
@@ -207,80 +244,82 @@ void FeasibleTable::antGraphWalk(vector<CourseRoomTime>* timetable, int cycle,
 
   // std::srand(rSeed);
   SM s;
-  // std::random_shuffle(
-  //     copyCourse.begin(), copyCourse.end(),
-  //     myrandomF);  // shuffle courses to select random to schedule
+  std::random_shuffle(
+      copyCourse.begin(), copyCourse.end(),
+      myrandomF); // shuffle courses to select random to schedule
+
 
   // while not all courses have not been scheduled to a timetable
   // select a random course and schedule
-  std::sort(copyCourse.begin(), copyCourse.end());
+  // std::sort(copyCourse.begin(), copyCourse.end());
   std::vector<Course>::iterator copyCourseIterator = copyCourse.begin();
   while (copyCourseIterator != copyCourse.end()) {
     Course c = *copyCourseIterator;
-    // cout<<c.getAvailable()<<"\t";
+    // cout<<c.getCode()<<"\t"<<endl;
+    // cout<<c.getAvailable()<<"\t"<<endl;
 
     // int doublePeriods = c.getDoubleLectures();
     // int tabuDaysSize = c.getMinWorkingDays();
-    int numWeeklyLectures = c.getWeeklyLectures();
+    // int numWeeklyLectures = c.getWeeklyLectures();
     list<int> tabuDays;
     // int assigned =0;
 
-    for (int i = 0; i < numWeeklyLectures; i++) {
-      vector<CourseRoomTime> tempTimetable = *timetable;
-      RoomTime rt = antCourseWalk(c, tabuRoomTime, tabuDays, curriculaPeriod,
-                                  lecturerPeriod, cycle, tempTimetable);
-      CourseRoomTime courseroomtime(c, rt);
-      courseroomtime.setUpdate(this->check);
+    vector<CourseRoomTime> tempTimetable = *timetable;
+    RoomTime rt = antCourseWalk(c, tabuRoomTime, tabuDays, curriculaPeriod,
+                                lecturerPeriod, cycle, tempTimetable);
+    CourseRoomTime courseroomtime(c, rt);
+    courseroomtime.setUpdate(this->check);
 
-      std::vector<CourseRoomTime>::iterator findCRT =
-          std::find(timetable->begin(), timetable->end(), courseroomtime);
-      if (findCRT != timetable->end()) {
-        cout << "Same course in same time and room twice" << endl;
-        // timetable->push_back(courseroomtime);
-      } else {
-        // timetable->push_back(courseroomtime);
-      }
-      timetable->push_back(courseroomtime);
-      // assigned++;
-
-      // add roomtime to tabu list
-      std::vector<RoomTime>::iterator findRT =
-          std::find(tabuRoomTime.begin(), tabuRoomTime.end(), rt);
-      if (findRT == tabuRoomTime.end()) tabuRoomTime.push_back(rt);
-
-      // add curriculums to curriculumperiod tabu
-      vector<string> cCodes = c.getCurriculaCodes();
-      std::vector<string>::iterator itcCodes = cCodes.begin();
-      while (itcCodes != cCodes.end()) {
-        string code_str = *itcCodes;
-        std::vector<string>::iterator findCode_str =
-            std::find(curriculaPeriod[rt.getPeriod()].begin(),
-                      curriculaPeriod[rt.getPeriod()].end(), code_str);
-        if (findCode_str == curriculaPeriod[rt.getPeriod()].end())
-          curriculaPeriod[rt.getPeriod()].push_back(code_str);
-        ++itcCodes;
-      }
-
-      // add lecturer to lecturerperiod
-      std::vector<string>::iterator findLecturer =
-          std::find(lecturerPeriod[rt.getPeriod()].begin(),
-                    lecturerPeriod[rt.getPeriod()].end(), c.getLecturer());
-      if (findLecturer == lecturerPeriod[rt.getPeriod()].end())
-        lecturerPeriod[rt.getPeriod()].push_back(c.getLecturer());
-
-      /*
-       * Add day to tabu Day list of size number of minimum working days.
-       * To avoid minimum working days constraint
-       */
-      int day = rt.getDay(this->periods_in_day);
-      int tabuSize = tabuDays.size();
-      if (tabuSize == c.getMinWorkingDays()) {
-        tabuDays.pop_back();
-        tabuDays.push_front(day);
-      } else {
-        tabuDays.push_front(day);
-      }
+    std::vector<CourseRoomTime>::iterator findCRT =
+        std::find(timetable->begin(), timetable->end(), courseroomtime);
+    if (findCRT != timetable->end()) {
+      cout << "Same course in same time and room twice" << endl;
+      // timetable->push_back(courseroomtime);
+    } else {
+      // timetable->push_back(courseroomtime);
     }
+    timetable->push_back(courseroomtime);
+    // assigned++;
+
+    // add roomtime to tabu list
+    std::vector<RoomTime>::iterator findRT =
+        std::find(tabuRoomTime.begin(), tabuRoomTime.end(), rt);
+    if (findRT == tabuRoomTime.end())
+      tabuRoomTime.push_back(rt);
+
+    // add curriculums to curriculumperiod tabu
+    vector<string> cCodes = c.getCurriculaCodes();
+    std::vector<string>::iterator itcCodes = cCodes.begin();
+    while (itcCodes != cCodes.end()) {
+      string code_str = *itcCodes;
+      std::vector<string>::iterator findCode_str =
+          std::find(curriculaPeriod[rt.getPeriod()].begin(),
+                    curriculaPeriod[rt.getPeriod()].end(), code_str);
+      if (findCode_str == curriculaPeriod[rt.getPeriod()].end())
+        curriculaPeriod[rt.getPeriod()].push_back(code_str);
+      ++itcCodes;
+    }
+
+    // add lecturer to lecturerperiod
+    std::vector<string>::iterator findLecturer =
+        std::find(lecturerPeriod[rt.getPeriod()].begin(),
+                  lecturerPeriod[rt.getPeriod()].end(), c.getLecturer());
+    if (findLecturer == lecturerPeriod[rt.getPeriod()].end())
+      lecturerPeriod[rt.getPeriod()].push_back(c.getLecturer());
+
+    /*
+     * Add day to tabu Day list of size number of minimum working days.
+     * To avoid minimum working days constraint
+     */
+    int day = rt.getDay(this->periods_in_day);
+    int tabuSize = tabuDays.size();
+    if (tabuSize == c.getMinWorkingDays()) {
+      tabuDays.pop_back();
+      tabuDays.push_front(day);
+    } else {
+      tabuDays.push_front(day);
+    }
+
     // cout<<"Assigned "<<c.getCode()<<"  "<<assigned<<" times"<<endl;
 
     ++copyCourseIterator;
@@ -307,96 +346,95 @@ RoomTime FeasibleTable::antCourseWalk(Course c, vector<RoomTime> tabuVenueTime,
                                       vector<CourseRoomTime> timetable) {
   this->check = true;
   vector<RoomTime> adjacentVertices =
-      getVenueTimeVertices(c);  // get possible roomtimes for course
+      getVenueTimeVertices(c); // get possible roomtimes for course
   // cout<<adjacentVertices.size()<<" adjacentVertices"<<endl;
   vector<RoomTime> L1Filter = filterVenueListTabu(
-      tabuVenueTime, adjacentVertices);  // remove roomperiods already assigned
+      tabuVenueTime, adjacentVertices); // remove roomperiods already assigned
   // cout<<L1Filter.size()<<" L1Filter"<<endl;
   vector<RoomTime> L2Filter = this->filterCurriculumPeriodTabu(
       c, curriculaPeriod,
-      L1Filter);  // remove RoomPeriods that will cause curriculum clash
+      L1Filter); // remove RoomPeriods that will cause curriculum clash
   // cout<<L2Filter.size()<<" L2Filter"<<endl;
   vector<RoomTime> L3Filter = this->filterLecturerPeriodTabu(
       c, lecturerPeriod,
-      L2Filter);  // remove RoomPeriods that will cause lecturer clash
+      L2Filter); // remove RoomPeriods that will cause lecturer clash
   // cout<<L3Filter.size()<<" L3Filter"<<endl;
   vector<RoomTime> L4Filter = this->filterDayListTabu(
-      L3Filter, tabuDays);  // try to meet minimum days constraint
-  // cout<<L4Filter.size()<<" L4Filter"<<endl;
+      L3Filter, tabuDays); // try to meet minimum days constraint
+  // cout << L4Filter.size() << " L4Filter" << endl;
+
+  // auto L4Filter = L3Filter;
 
   // set probabilities of edges
   double probability[L4Filter.size()];
+
   for (std::size_t i = 0; i < L4Filter.size(); i++) {
     RoomTime rtTemp = L4Filter[i];
-    /*//double venueClash = 0;
-    //double studentClash = 0;
-    //double dayConstraint = 0;
-    //double lecturerClash = 0;
+    double venueClash = 0;
+    double studentClash = 0;
+    double dayConstraint = 0;
+    double lecturerClash = 0;
 
-    //check if there is a room clash
-    std::vector<RoomTime>::iterator findRT = std::find(tabuVenueTime.begin(),
-    tabuVenueTime.end(), rtTemp);
-    if (findRT != tabuVenueTime.end())
-    {
-            venueClash = 1;
-            this->check = false;
-
+    // check if there is a room clash
+    std::vector<RoomTime>::iterator findRT =
+        std::find(tabuVenueTime.begin(), tabuVenueTime.end(), rtTemp);
+    if (findRT != tabuVenueTime.end()) {
+      venueClash = 1;
+      this->check = false;
     }
 
-    //check if there is a lecturer clash
+    // check if there is a lecturer clash
     std::vector<string>::iterator findLecturer =
-    std::find(lecturerPeriod[rtTemp.getPeriod()].begin(),
-    lecturerPeriod[rtTemp.getPeriod()].end(), c.getLecturer());
-    if (findLecturer != lecturerPeriod[rtTemp.getPeriod()].end())
-    {
-            lecturerClash = 1;
-            this->check = false;
+        std::find(lecturerPeriod[rtTemp.getPeriod()].begin(),
+                  lecturerPeriod[rtTemp.getPeriod()].end(), c.getLecturer());
+    if (findLecturer != lecturerPeriod[rtTemp.getPeriod()].end()) {
+      lecturerClash = 1;
+      this->check = false;
     }
 
-
-    //check if violates day constraint
-    std::list<int>::iterator findDay = std::find(tabuDays.begin(),
-    tabuDays.end(), rtTemp.getDay(this->periods_in_day));
-    if (findDay != tabuDays.end())
-    {
-            dayConstraint = 0.3;
+    // check if violates day constraint
+    std::list<int>::iterator findDay = std::find(
+        tabuDays.begin(), tabuDays.end(), rtTemp.getDay(this->periods_in_day));
+    if (findDay != tabuDays.end()) {
+      dayConstraint = 0.3;
     }
 
-    //check if there is a student clash
+    // check if there is a student clash
     std::vector<string> cCurr = c.getCurriculaCodes();
     std::vector<string>::iterator cCurrIterator = cCurr.begin();
     bool l = false;
-    while (cCurrIterator != cCurr.end() && !l)
-    {
-            string curCod = *cCurrIterator;
-            std::vector<string>::iterator findCurriculum =
-    std::find(curriculaPeriod[rtTemp.getPeriod()].begin(),
-    curriculaPeriod[rtTemp.getPeriod()].end(), curCod);
-            if ( findCurriculum != curriculaPeriod[rtTemp.getPeriod()].end())
-                    l = true;
-            cCurrIterator++;
+    while (cCurrIterator != cCurr.end() && !l) {
+      string curCod = *cCurrIterator;
+      std::vector<string>::iterator findCurriculum =
+          std::find(curriculaPeriod[rtTemp.getPeriod()].begin(),
+                    curriculaPeriod[rtTemp.getPeriod()].end(), curCod);
+      if (findCurriculum != curriculaPeriod[rtTemp.getPeriod()].end())
+        l = true;
+      cCurrIterator++;
     }
-    if (l)
-    {
-            studentClash = 1;
-            this->check = false;
-    }*/
+    if (l) {
+      studentClash = 1;
+      this->check = false;
+    }
 
-    /*auto temp = timetable;
+    auto temp = timetable;
     CourseRoomTime tempCRT(c, rtTemp);
     temp.push_back(tempCRT);
     int conViolate = SM::getConsecutiveViolations(temp, rtTemp.getPeriod(),
-    this->getPeriodsInDay());
-    conViolate-=this->curCodes.size();
-*/
+                                                  this->getPeriodsInDay());
+    conViolate -= this->curCodes.size();
+
     double trail = this->adjacentMatrix[this->getAdjacentCourseIndex(c)]
                                        [this->getAdjacentRoomTimeIndex(rtTemp)];
-    // double heuristic = ((2.3 - studentClash + venueClash + lecturerClash +
-    // dayConstraint) * conViolate) - conViolate;
+    double heuristic =
+        ((2.3 - studentClash + venueClash + lecturerClash + dayConstraint) *
+         conViolate) -
+        conViolate;
 
     double trailFactor = pow(trail, this->beta);
-    // double heuristicFactor = pow(heuristic, this->alpha);
-    double heuristicFactor = 0;
+    double heuristicFactor = pow(heuristic, this->alpha);
+    // double heuristicFactor = 0;
+    // double heuristicFactor = 0;
     probability[i] = trailFactor + heuristicFactor;
   }
 
@@ -417,8 +455,9 @@ RoomTime FeasibleTable::antCourseWalk(Course c, vector<RoomTime> tabuVenueTime,
  * tabuList
  * Tabulist is the list of all venue time elements already assigned to a course
  */
-vector<RoomTime> FeasibleTable::filterVenueListTabu(
-    vector<RoomTime> tabuList, vector<RoomTime> vt)  // VenueTime Tabu Filter
+vector<RoomTime>
+FeasibleTable::filterVenueListTabu(vector<RoomTime> tabuList,
+                                   vector<RoomTime> vt) // VenueTime Tabu Filter
 {
   vector<RoomTime> tabuFiltered;
   std::vector<RoomTime>::iterator rtIterator = vt.begin();
@@ -426,18 +465,21 @@ vector<RoomTime> FeasibleTable::filterVenueListTabu(
     RoomTime rt = *rtIterator;
     std::vector<RoomTime>::iterator findRT =
         std::find(tabuList.begin(), tabuList.end(), rt);
-    if (findRT == tabuList.end())  // Not in tabuList
+    if (findRT == tabuList.end()) // Not in tabuList
       tabuFiltered.push_back(rt);
     ++rtIterator;
   }
-  if (tabuFiltered.size() > 0) return tabuFiltered;
+  if (tabuFiltered.size() > 0)
+    return tabuFiltered;
 
-  return vt;  // Return old which will result in a clash
+  // cout<< " A clash will happen on room time"<< endl;
+
+  return vt; // Return old which will result in a clash
 }
 
-vector<RoomTime> FeasibleTable::getVenueTimeVertices(const Course& c) {
+vector<RoomTime> FeasibleTable::getVenueTimeVertices(const Course &c) {
   vector<RoomTime> adjacent;
-  
+
   std::vector<Course>::iterator findIter =
       std::find(this->course.begin(), this->course.end(), c);
   if (findIter != this->course.end()) {
@@ -486,17 +528,21 @@ vector<RoomTime> FeasibleTable::filterCurriculumPeriodTabu(
       std::vector<string>::iterator findCode =
           std::find(curriculaPeriod[rt.getPeriod()].begin(),
                     curriculaPeriod[rt.getPeriod()].end(), code);
-      if (findCode != curriculaPeriod[rt.getPeriod()].end()) l = false;
+      if (findCode != curriculaPeriod[rt.getPeriod()].end())
+        l = false;
       ++ccIterator;
     }
-    if (l)  // if no clash add to filtered
+    if (l) // if no clash add to filtered
       currFiltered.push_back(rt);
     ++rtIterator;
   }
 
-  if (currFiltered.size() > 0) return currFiltered;
+  if (currFiltered.size() > 0)
+    return currFiltered;
 
-  return fVenueTabu;  // return old vector if filtered is empty
+  // cout<< "Curriculum clash will occur" <<endl;
+
+  return fVenueTabu; // return old vector if filtered is empty
 }
 
 /**
@@ -523,13 +569,14 @@ vector<RoomTime> FeasibleTable::filterLecturerPeriodTabu(
 
     if (findLecturer ==
         lecturerPeriod[rt.getPeriod()]
-            .end())  // if not assigning same lecturer to same period
+            .end()) // if not assigning same lecturer to same period
       lecFiltered.push_back(rt);
     ++rtIterator;
   }
 
-  if (lecFiltered.size() > 0) return lecFiltered;
-  return fCurPerTabu;  // return old if filtered is empty
+  if (lecFiltered.size() > 0)
+    return lecFiltered;
+  return fCurPerTabu; // return old if filtered is empty
 }
 
 /**
@@ -549,15 +596,16 @@ vector<RoomTime> FeasibleTable::filterDayListTabu(vector<RoomTime> roomTimes,
     std::list<int>::iterator findDay = std::find(
         dayTabu.begin(), dayTabu.end(), rt.getDay(this->periods_in_day));
 
-    if (findDay == dayTabu.end())  // if not in day tabu
+    if (findDay == dayTabu.end()) // if not in day tabu
       dayFiltered.push_back(rt);
 
     ++rtIterator;
   }
 
-  if (dayFiltered.size() > 0) return dayFiltered;
+  if (dayFiltered.size() > 0)
+    return dayFiltered;
 
-  return roomTimes;  // return old if filtered is empty
+  return roomTimes; // return old if filtered is empty
 }
 
 /**
@@ -612,7 +660,7 @@ RoomTime FeasibleTable::selectRoom(double probability[], vector<RoomTime> rt,
   }
 
   cout << "Error in cumulative Probability" << endl;
-  return rt[0];  // should not get to this point
+  return rt[0]; // should not get to this point
 }
 
 /**
@@ -640,7 +688,7 @@ int FeasibleTable::NumberHCV(vector<CourseRoomTime> timetable) {
   int featureSizeViolation = 0;
   int lecturerViolation = 0;
 
-  for (int i = 0; i < this->maxPeriod; i++)  // get violations in each period
+  for (int i = 0; i < this->maxPeriod; i++) // get violations in each period
   {
     vector<string> curGlobal;
     vector<string> roomGlobal;
@@ -681,7 +729,7 @@ int FeasibleTable::NumberHCV(vector<CourseRoomTime> timetable) {
 
       // get room feature or size violations
       vector<string> fsConst =
-          c.getRoomConstraint();  // must be in this vector else a violation
+          c.getRoomConstraint(); // must be in this vector else a violation
 
       /*
       vector<string>::iterator rcsItr = fsConst.begin();
@@ -725,11 +773,12 @@ int FeasibleTable::NumberHCV(vector<CourseRoomTime> timetable) {
   }
   int HCV = roomViolation + curriculumViolation + unavailableViolation +
             featureSizeViolation + lecturerViolation;
-  // cout<< "\troomViolation: " <<roomViolation <<"\t"<<"curriculumViolation:
-  // "<<curriculumViolation<<"\t"<< "unavailableViolation: "
-  // <<unavailableViolation <<"\t" <<"featureSizeViolation: "<<
-  // featureSizeViolation <<"\t"<<"lecturerViolation: "<<
-  // lecturerViolation<<endl;;
+  // cout << "\troomViolation: " << roomViolation << "\t"
+  //      << "curriculumViolation:" << curriculumViolation << "\t"
+  //      << "unavailableViolation: " << unavailableViolation << "\t"
+  //      << "featureSizeViolation: " << featureSizeViolation << "\t"
+  //      << "lecturerViolation: " << lecturerViolation << endl;
+  // ;
   return HCV;
 }
 
@@ -738,8 +787,8 @@ int FeasibleTable::NumberHCV(vector<CourseRoomTime> timetable) {
  * @param period
  * @return
  */
-vector<Course> FeasibleTable::getPeriodCourse(
-    int period, vector<CourseRoomTime> timetable) {
+vector<Course>
+FeasibleTable::getPeriodCourse(int period, vector<CourseRoomTime> timetable) {
   vector<Course> cees;
   std::vector<CourseRoomTime>::iterator tIterator = timetable.begin();
   while (tIterator != timetable.end()) {
@@ -793,19 +842,21 @@ void FeasibleTable::evapourate() {
 
 void FeasibleTable::updateAntTrail(int timetableQuality,
                                    vector<CourseRoomTime> timetable) {
-  double reward = 1 / (1 + (double)timetableQuality - (double)this->globalBest);
+  double reward = 1 / (1 + (double)timetableQuality -
+  (double)this->globalBest);
 
-  if (this->globalBest > timetableQuality) reward = 1;
+  if (this->globalBest > timetableQuality)
+    reward = 1;
 
-  /*	//Positive and negative rewards
-          double reward = (1 / (1 + (double)timetableQuality -
-     (double)this->globalBest )) - 1;
-          reward = reward/10;
+  // Positive and negative rewards
+  // double reward =
+  //     (1 / (1 + (double)timetableQuality - (double)this->globalBest)) - 1;
+  // reward = reward / 10;
 
-          if (this->globalBest > timetableQuality)
-                  //reward = 1;
-                  reward = 1 - (1 / (1 + (double)this->globalBest  -
-     (double)timetableQuality));*/
+  // if (this->globalBest > timetableQuality)
+  //   // reward = 1;
+  //   reward =
+  //       1 - (1 / (1 + (double)this->globalBest - (double)timetableQuality));
 
   cout << "\t\t\t\t\tReward: " << reward << endl;
 
@@ -817,7 +868,7 @@ void FeasibleTable::updateAntTrail(int timetableQuality,
     int indexRoomTime = this->getAdjacentRoomTimeIndex(crt.getVenueTime());
 
     adjacentMatrix[indexCourse][indexRoomTime] +=
-        reward;  // Add reward based on quality of solution
+        reward; // Add reward based on quality of solution
     if (adjacentMatrix[indexCourse][indexRoomTime] > t_max) {
       adjacentMatrix[indexCourse][indexRoomTime] = t_max;
     }
@@ -856,21 +907,21 @@ void FeasibleTable::antColonyThread(int numAnts, int numCycles) {
 
   for (int i = 0; i < numCycles; i++) {
     // int cycleb = 5000000;
-    vector<CourseRoomTime>* antWalk =
-        new vector<CourseRoomTime>[numAnts];  // create vector of results
-    int num_hcv[numAnts];  // create vector of number of hard constraint
-                           // violations
-    int num_scv[numAnts];  // create vector of number of soft constraint
-                           // violations
+    vector<CourseRoomTime> *antWalk =
+        new vector<CourseRoomTime>[numAnts]; // create vector of results
+    int num_hcv[numAnts]; // create vector of number of hard constraint
+                          // violations
+    int num_scv[numAnts]; // create vector of number of soft constraint
+                          // violations
     std::vector<std::thread> th;
     for (int j = 0; j < numAnts;
-         j++)  // create threads of number of ants to run in parallel
+         j++) // create threads of number of ants to run in parallel
     {
       th.push_back(std::thread(&FeasibleTable::antGraphWalk, this, &antWalk[j],
                                ((i + 1) * (j + 1)), &num_hcv[j], &num_scv[j]));
     }
 
-    for (auto& t : th)  // join all ants threads
+    for (auto &t : th) // join all ants threads
     {
       t.join();
     }
@@ -880,6 +931,7 @@ void FeasibleTable::antColonyThread(int numAnts, int numCycles) {
     int cycleBestIndex = 0;
     for (int k = 0; k < numAnts; k++) {
       // int num_hcv = this->NumberHCV(antWalk[k]);
+      // int antValue = (num_hcv[k] * num_scv[k]) + num_scv[k];
       int antValue;
       if (found == false) {
         antValue = num_hcv[k];
@@ -894,16 +946,16 @@ void FeasibleTable::antColonyThread(int numAnts, int numCycles) {
            << " Num HCV violations: " << num_hcv[k]
            << "   Num SCV Violations: " << num_scv[k]
            << " Ant Value: " << antValue << endl;
-      // if (num_scv[k] == 0 && num_hcv[k] == 0)
-      if (num_hcv[k] == 0) {
-        globe = antWalk[k];
-        this->feasibleTable = globe;
-        cout << "Found Global Best is: " << this->globalBest << " in cycle "
-             << i << " Size: " << globe.size() << " SCV: " << num_scv[k]
-             << " HCV: " << num_hcv[k] << endl;
-        delete[] antWalk;
-        return;
-      }
+      if (num_scv[k] == 0 && num_hcv[k] == 0)
+        if (num_hcv[k] == 0) {
+          globe = antWalk[k];
+          this->feasibleTable = globe;
+          cout << "Found Global Best is: " << this->globalBest << " in cycle "
+               << i << " Size: " << globe.size() << " SCV: " << num_scv[k]
+               << " HCV: " << num_hcv[k] << endl;
+          delete[] antWalk;
+          return;
+        }
     }
 
     // update trail
@@ -952,6 +1004,7 @@ void FeasibleTable::antColony(int numAnts, int numCycles) {
       vector<CourseRoomTime> antWalk;
       int hcv_ant = 0;
       int scv_ant = 0;
+
       this->antGraphWalk(&antWalk, (j + 1), &hcv_ant, &scv_ant);
       int antValue;
       if (found == false) {
@@ -987,7 +1040,7 @@ void FeasibleTable::antColony(int numAnts, int numCycles) {
     if (cycleb < this->globalBest) {
       this->globalBest = cycleb;
       globe = cyclebest;
-      tempTable.writeTimetableToFileSolutionFormat("tempResult.sol", globe);
+      // tempTable.writeTimetableToFileSolutionFormat("tempResult.sol", globe);
     }
     cout << "Global Best is: " << this->globalBest << endl;
   }
