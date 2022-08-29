@@ -980,7 +980,7 @@ void FeasibleTable::antColonyThread(int numAnts, int numCycles) {
       number++;
     }
     if (number == 1) {
-      this->globalBest = RAND_MAX;
+      this->globalBest = num_scv[cycleBestIndex];
     }
     // cout<<"Global Best is: " << this->globalBest<<endl;
 
