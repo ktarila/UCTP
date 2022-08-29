@@ -240,10 +240,10 @@ void FeasibleTable::antGraphWalk(vector<CourseRoomTime> *timetable, int cycle,
   }
 
   // unsigned int rSeed = time(NULL) * cycle;
-  // cout<<"\t\t"<<rSeed;
+  // // cout<<"\t\t"<<rSeed;
 
   // std::srand(rSeed);
-  SM s;
+  // SM s;
   // std::random_shuffle(
   //     copyCourse.begin(), copyCourse.end(),
   //     myrandomF); // shuffle courses to select random to schedule
@@ -952,7 +952,6 @@ void FeasibleTable::antColonyThread(int numAnts, int numCycles) {
            << " Num HCV violations: " << num_hcv[k]
            << "   Num SCV Violations: " << num_scv[k]
            << " Ant Value: " << antValue << endl;
-      if (num_scv[k] == 0 && num_hcv[k] == 0)
         if (num_hcv[k] == 0) {
           globe = antWalk[k];
           this->feasibleTable = globe;

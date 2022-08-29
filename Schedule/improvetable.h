@@ -115,11 +115,10 @@ public:
   void updateAntTrail(const int& numSCV_cycleBest, const vector<int>& path);
   void initPeriod(const int& day);
   vector<CourseRoomTime> antColonySoftThread(const int& numberAnts,
-                                             const int& numberCycles,
-                                             const int& num_ber, bool accept);
+                                             const int& numberCycles
+                                             );
   vector<CourseRoomTime> antColonySoft(const int& numberAnts,
-                                       const int& numberCycles,
-                                       const int& num_ber, bool accept);
+                                       const int& numberCycles);
   vector<CourseRoomTime> fullSchedule;
   void setFullSchedule(vector<CourseRoomTime>);
   void writeTimetableToFileSolutionFormat(string solution,
