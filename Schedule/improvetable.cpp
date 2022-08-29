@@ -33,7 +33,7 @@ ImproveTable::ImproveTable(vector<RoomTime> venueTime, vector<Venue> rooms,
       fullSchedule(timetable) {
   this->maxPeriod = maxPeriod;
   this->periods_in_day = periods_in_day;
-  this->bestSoFar = 50000;
+  this->bestSoFar = RAND_MAX;
 
   // dynamic allocation of adjacent matrix
   // cout<<"resizing adjacent matrix"<<endl;
@@ -1037,7 +1037,7 @@ ImproveTable::antColonySoftThread(const int &numberAnts,
 
   // System.out.println("Selecting " + number + " random event pairs");
   for (int i = 0; i < numberCycles; i++) {
-    cout << "Cycle: " << i;
+    cout << "Cycle: " << i << endl;
     // walkCurrent++;
     // auto current = schedule;
     // int cycleBest = 50000;

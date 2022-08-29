@@ -130,8 +130,8 @@ int main(int argc, char *argv[]) {
   ImproveTable finalTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
                         ft.getCourse(), ft.getFeasibleTable(),
                         ft.getMaxPeriod(), ft.getPeriodsInDay());
-  // auto newT = finalTable.runImprovement(20, 3, 3);
-  auto newT = finalTable.antColonySoft(3, 30);
+  auto newT = finalTable.runImprovement(1, 3, 1);
+  // auto newT = finalTable.antColonySoftThread(3, 30);
   finalTable.writeTimetableToFileSolutionFormat(solfilename, newT);
 
   // double wall6 = SM::get_wall_time();
