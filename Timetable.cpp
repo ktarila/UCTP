@@ -16,7 +16,8 @@ int main(int argc, char *argv[]) {
   int numAnts = 8;
   int numGens = 1000;
 
-  if (argc != 4) { // argc should be 4 for correct execution
+
+  if (argc < 4) { // argc should be 4 for correct execution
     // We print argv[0] assuming it is the program name
     cout << "usage: " << argv[0]
          << " <comp01> <number_of_ants> <number_of_iterations>\n";
@@ -31,6 +32,12 @@ int main(int argc, char *argv[]) {
   std::stringstream solfilenamestream;
   solfilenamestream << "/home/patrick/work/UCTP-CPP/Results/" << argv[1]
                     << ".sol";
+
+  if (argc == 5)
+  {
+     solfilenamestream << argv[4];
+     
+  }
   // const char* filename = "InputData/Test_ectt/toy.ectt";
   char *inputfilepath = new char[filename.str().length() + 1];
   filename >> inputfilepath;
@@ -130,8 +137,9 @@ int main(int argc, char *argv[]) {
   ImproveTable finalTable(ft.getVenueTime(), data->getRooms(), ft.getCurCodes(),
                         ft.getCourse(), ft.getFeasibleTable(),
                         ft.getMaxPeriod(), ft.getPeriodsInDay());
-  auto newT = finalTable.runImprovement(1, 3, 1);
+  // auto newT = finalTable.runImprovement(30, 8, 1);
   // auto newT = finalTable.antColonySoftThread(3, 30);
+  auto newT = ft.getFeasibleTable();
   finalTable.writeTimetableToFileSolutionFormat(solfilename, newT);
 
   // double wall6 = SM::get_wall_time();
